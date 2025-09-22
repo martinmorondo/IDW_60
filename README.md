@@ -1,2 +1,11 @@
-# IDW_60
-Trabajo Final Integrador de la Materia "Introducción al Desarrollo Web" UNER
+# Trabajo Final Integrador
+## Introducción al Desarrollo Web  
+
+### GRUPO 60  
+
+#### Integrantes
+- Gabriela de los Angeles Camacho  
+- Griselda Eggs  
+- Dylan Morales  
+- Martin Morondo  
+
