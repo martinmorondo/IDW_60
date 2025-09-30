@@ -1,68 +1,117 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <title>VITA KIDS - Inicio</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/EstiloContacto.css">
-        <link rel="stylesheet" href="css/estilos.css">
-        <link rel="icon" href="imagenes/favicon1.ico" type="image/x-icon">
-        <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    </head>
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VITA KIDS - Inicio</title>
+    <link rel="icon" href="imagenes/favicon1.ico" type="image/x-icon">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/contacto.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
     
-    <body>
-        
-       
-        <header>
+    <body>    
+       <header class="navbar navbar-expand-lg">
+        <div class="container-fluid">
             
-            <div class="logo">
-            <a href="inicio.html" class="logo">
+            <!-- Logo + Título -->
+            <a href="inicio.html" class="logo d-flex flex-column align-items-center text-center text-decoration-none">
                 <img src="imagenes/logo_sin_fondo.png" alt="Logo de la página">
+                <h1>Centro Integral de Salud Infantil</h1>
             </a>
-            <h1>Centro Integral de Salud Infantil</h1>
-        </div>
-            <nav>
-                <ul>
-                <li><a href="inicio.html">Inicio</a></li>
-                <li><a href="institucional.html">Información Institucional</a></li>
-                <li><a href="contacto.html" class="active">Contacto</a></li>
-                <li><a href="turnos.html">Solicitar Turno</a></li>
+    
+            <!-- Botón hamburguesa -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav" aria-controls="menuNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Menú de navegación -->
+            <nav class="collapse navbar-collapse" id="menuNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="inicio.html" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="institucional.html" class="nav-link">Institucional</a></li>
+                    <li class="nav-item"><a href="contacto.html" class="nav-link  active">Contacto</a></li>
+                    <li class="nav-item"><a href="especialidades.html" class="nav-link">Especialidades</a></li>
+                    <li class="nav-item"><a href="turnos.html" class="nav-link">Solicitar Turno</a></li>
                 </ul>
             </nav>
-        </header>
-        
-        
+        </div>
+    </header>
+          
         <main>
-            <br>
-            <br>
-            <section class="formulario">
-            <h1>Contáctanos</h1>
-            <form action="mailto:ClinicaVitaKids@gmail.com" method="post" enctype="text/plain">
-                <label for="nombre">Nombre y Apellido:</label>
-                <input type="text" id="nombre" name="nombre">
+            <div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card border-0 shadow-lg">
+                <div class="card-body p-0">
+                    <div class="row g-0">
+                        <div class="col-md-5 bg-primary text-white p-4 p-md-5 rounded-start">
+                            <h3 class="fw-bold mb-4">Información de Contacto</h3>
+                            <p class="mb-3">
+                                <i class="fas fa-map-marker-alt me-2"></i>
+                                Av. San Martín 123, CABA, Argentina
+                            </p>
+                            <p class="mb-3">
+                                <i class="fas fa-phone me-2"></i>
+                                (011) 1234-5678
+                            </p>
+                            <p class="mb-4">
+                                <i class="fas fa-envelope me-2"></i>
+                                ClinicaVitaKids@gmail.com
+                            </p>
+                            <p>¡No dudes en comunicarte con nosotros! Estamos aquí para ayudarte con cualquier consulta que tengas.</p>
+                        </div>
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email"><br>
+                        <div class="col-md-7 p-4 p-md-5">
+                            <h2 class="fw-bold mb-4">Envíanos tu Mensaje</h2>
+                            <form action="mailto:ClinicaVitaKids@gmail.com" method="post" enctype="text/plain">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Escribe tu nombre completo" required>
+                                    <label for="nombre">Nombre y Apellido</label>
+                                </div>
 
-                <label for="mensaje">Mensaje:</label><br>
-                <textarea id="mensaje" name="mensaje" rows="4" cols="50"></textarea><br>
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="ejemplo@correo.com" required>
+                                    <label for="email">Email</label>
+                                </div>
 
-                <button type="submit">Enviar</button>
-            </form>
-            </section>
+                                <div class="form-floating mb-4">
+                                    <textarea class="form-control" id="mensaje" name="mensaje" placeholder="Escribe aquí tu consulta" style="height: 120px" required></textarea>
+                                    <label for="mensaje">Mensaje</label>
+                                </div>
+
+                                <div class="d-grid">
+                                    <button class="btn btn-primary btn-lg btn-consulta" type="submit">
+                                        <i class="fas fa-paper-plane me-2"></i> Enviar Consulta
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
             <section class="OpcionesContacto">
-               
                 <div>
-                    <i class="fa fa-solid fa-phone"></i><h2> TELEFONO</h2>
-                    <p> 298-4578876</p> 
+                    <i class="fa fa-solid fa-phone"></i>
+                    <h3>TELEFONO</h3>
+                    <p>298-4578876</p> 
                 </div>
                  <div>
-                    <i class="fab fa-whatsapp"></i><h2> WHATSAPP</h2>
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WHATSAPP</h3>
                     <p> 298-4578000</p> 
                 </div>
                 <div>
-                    <i class="fas fa-envelope"></i><h2> EMAIL</h2>
+                    <i class="fas fa-envelope"></i>
+                    <h3>EMAIL</h3>
                     <p> ClinicaVitaKids@gmail.com</p> 
                 </div>
             </section>
@@ -87,6 +136,8 @@
         <div>
           <p>&copy; 2025 Vita Kids S.A - Todos los derechos reservados.</p>
         </div>
-    </footer>   
+    </footer> 
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>

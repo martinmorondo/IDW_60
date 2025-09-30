@@ -1,18 +1,3 @@
-* {
-    box-sizing: border-box; 
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 1rem;
-    line-height: 1.6;
-    background-color: #f4f4f4; 
-    color: #333;
-    padding-top: 5rem;
-}
-
 /* Estilos generales del header */
 /* HEADER FIJO */
 header.navbar {
@@ -29,31 +14,6 @@ header.navbar {
   top: 0;
   width: 100%;
   z-index: 1030;
-}
-
-/* LOGO + TÍTULO */
-.logo {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  height: 100%;
-  text-decoration: none; 
-}
-
-.logo img {
-  height: 3.75rem;
-  width: auto;
-  display: block; 
-}
-
-.logo h1 {
-  font-size: 0.8rem;
-  font-family: cursive;
-  font-weight: bold;
-  margin-bottom: 0.4rem;
-  color: #444; /* asegura color del título */
 }
 
 /* MENÚ DE NAVEGACIÓN */
@@ -86,40 +46,12 @@ header.navbar {
   color: white !important;
 }
 
-/* HAMBURGUESA */
-.navbar-toggler {
-  border: none;
-}
-
-/* Icono hamburguesa personalizado (gris) */
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(68,68,68)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-}
-
-/* Hover hamburguesa en verde */
-.navbar-toggler:hover .navbar-toggler-icon {
-  filter: brightness(0) saturate(100%) invert(43%) sepia(65%) saturate(306%) hue-rotate(58deg) brightness(96%) contrast(92%);
-}
-
-/* En móvil, el menú se ve vertical pero con tu mismo estilo */
-@media (max-width: 991px) {
-  .navbar-nav {
-    flex-direction: column;
-    gap: 10px;
-  }
-  header.navbar {
-    height: auto; /* permite que el contenido determine la altura */
-    /* espacio interno más cómodo */
-    flex-direction: column;
-    align-items: center;
-  }
-}
   
 /* Banner */
 .video-banner {
     position: relative;
     width: 100%;
-    height: 67vh;
+    height: auto;
     overflow: hidden;
     margin-top: 0 !important;
     padding-top: 0;
@@ -399,7 +331,6 @@ header.navbar {
 
 .card .descripcion {
   font-size: 0.95rem;
-  
   line-height: 1.4;
 }
 
@@ -530,68 +461,3 @@ header.navbar {
  }
 }
 
-/* --- Footer general --- */
-.footer {
-  background-color: #3a7015; 
-  color: #fff;
-  font-family: 'Segoe UI', sans-serif;
-  /*margin-top: 3rem;*/
-  margin-top: 0;
-}
-
-/* Contenido principal */
-.footer-content {
-  max-width: 800px; /* más angosto y elegante */
-  margin: 0 auto;
-  padding: 1rem 1.5rem 0.5rem 1.5rem;
-  text-align: center;
-}
-
-/* Logo */
-.logo-footer {
-  max-width: 120px;
-  margin-bottom: 0.2rem;
-}
-
-/* Texto descriptivo */
-.footer-left h3 {
-  font-size: 1.2rem;
-  font-family: cursive;
-  margin-bottom: 0.3rem;
-  color: #d4f1f9;
-}
-
-.footer-left p {
-  margin: 0.2rem 0;
-  font-size: 0.95rem;
-}
-
-/* Iconos de contacto */
-.iconos-contacto {
-  margin-top: 1.2rem;
-}
-
-.iconos-contacto a {
-  color: #fff;
-  margin: 0 0.6rem;
-  font-size: 1.3rem;
-  transition: color 0.3s ease;
-  text-decoration: none; 
-}
-
-.iconos-contacto a:hover {
-  color: rgb(234 127 47);
-}
-
-/* Franja de copyright */
-.footer > div:last-child {
-  background-color: #011f01;
-  display: flex;
-  justify-content: center;   /* Centra horizontalmente */
-  align-items: center;       /* Centra verticalmente */
-  height: 2rem;            /* Asegura espacio vertical suficiente */
-  font-size: 0.85rem;
-  margin-top: 0.5rem;
-  padding-top: 0.6rem;
-  color: white;        
-}

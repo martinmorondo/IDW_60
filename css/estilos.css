@@ -1,3 +1,12 @@
+/*#323637 onix
+#e98136 naranja
+#8ccfe3 celeste
+#75ae47 verde oscuro
+#bfdb7f verde claro
+#efc66c arena rgba(239, 198, 108
+#E5E0DE Platino
+{{}} */
+
 * {
     box-sizing: border-box; 
     margin: 0;
@@ -21,50 +30,97 @@ header {
     border-bottom: 2px solid #e0e0e0;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
-  
-  /* Logo + título */
-  .logo {
-    display: flex;
-    flex-direction: column; /* Apila elementos verticalmente */
-    align-items: center;     /* Centra horizontalmente */
-    text-align: center;      /* Centra el texto del h1 */       
+
+  main {
+    margin-top: 6rem;
   }
   
-  .logo img {
-    height: 50px;
-    width: auto;
-  }
-  
-  .logo h1 {
-    font-size: 0.8rem;
-    font-family: cursive;
-  }
-  
-/* Menú de navegación */
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 25px;
+  /* LOGO + TÍTULO */
+.logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  text-decoration: none; 
+}
+
+.logo img {
+  height: 3.75rem;
+  width: auto;
+  display: block; 
+}
+
+.logo h1 {
+  font-size: 0.8rem;
+  font-family: cursive;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+  color: #444; /* asegura color del título */
 }
   
-  nav ul li a {
-    text-decoration: none;
-    color: #444;
-    font-weight: 500;
-    padding: 8px 12px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    border-radius: 5px;
-  }
-  
-  nav ul li a:hover {
-    background-color:rgb(105 180 68);
-    color: white;
-  }
-  
-  nav ul li a.active {
-    background-color: rgb(78, 148, 43);
-    color: white;
-  }
+/* Estilos generales del header */
+/* HEADER FIJO */
+header.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f5f5f5 !important; /* Sobrescribe Bootstrap */
+  padding: 0.37rem 1.87rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  height: 5rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1030;
+}
+
+/* MENÚ DE NAVEGACIÓN */
+.navbar-nav {
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilo de los enlaces */
+.navbar-nav .nav-link {
+  color: #444 !important; /* Forzamos tu color gris */
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 8px 12px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 5px;
+}
+
+/* Hover */
+.navbar-nav .nav-link:hover {
+  background-color: rgb(105, 180, 68);
+  color: white !important;
+}
+
+/* Active */
+.navbar-nav .nav-link.active {
+  background-color: rgb(78, 148, 43);
+  color: white;
+}
+
+ /* HAMBURGUESA */
+.navbar-toggler {
+  border: none;
+}
+
+/* Icono hamburguesa personalizado (gris) */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(68,68,68)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Hover hamburguesa en verde */
+.navbar-toggler:hover .navbar-toggler-icon {
+  filter: brightness(0) saturate(100%) invert(43%) sepia(65%) saturate(306%) hue-rotate(58deg) brightness(96%) contrast(92%);
+}
 
   /* Estilos específicos para la lista de valores */
 .values {
@@ -72,186 +128,21 @@ nav ul {
   padding-left: 20px;  
 }
 
-/* Banner */
-.video-banner {
-    position: relative;
-    width: 100%;
-    height: 67vh;
-    overflow: hidden;
-}
-
-  .video-banner video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 50% center;
+/* En móvil, el menú se ve vertical pero con tu mismo estilo */
+@media (max-width: 991px) {
+  .navbar-nav {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    padding: 1rem 0;
   }
-
-/* Contenedor principal */
-.presentacion {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 50px;
-  padding: 50px 10px;
-  background-color:rgb(191 219 127); 
-  font-family: 'Segoe UI', sans-serif;
-}
-
-/* Slogan decorativo a la izquierda */
-.slogan-bloque {
-  flex: 1;
-  min-width: 280px;
-  max-width: 400px;
-  text-align: center;
-  margin-left: -30px;
-}
-
-.slogan-bloque h2 {
-  font-size: 2rem;
-  font-family: "Poetsen One", sans-serif;
-  color: #2b772e;
-  margin: 15px 0;
-  padding-bottom: 10px;
-  border-bottom: 2px solid rgb(234 127 47);
-}
-
-/* Caja de presentación a la derecha */
-.box-descripcion {
-  flex: 2;
-  min-width: 300px;
-  max-width: 600px;
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-  text-align: center;
-}
-
-.box-descripcion:hover{
-  transform: translateY(-5px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
-}
-
-.box-descripcion img {
-  width: 60px;
-  height: auto;
-}
-
-.box-descripcion p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  text-align: justify;
-}
-
-/* Sección horario/consultas */
-.consultas {
-  padding: 40px;
-  background-color: #f9f9f9;
-  font-family: 'Segoe UI', sans-serif;
-  border-radius: 8px;
-  max-width: 800px;
-  margin: auto;
-}
-
-.horario-bloque {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.horario-bloque img {
-  width: 60px;
-  height: auto;
-  margin-bottom: 10px;
-}
-
-.botones-consultas ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.botones-consultas li a {
-  display: inline-block;
-  padding: 10px 15px;
-  background-color: rgb(78, 148, 43);
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.botones-consultas li a:hover {
-  background-color: rgb(183, 235, 131);
-  color: #2b772e;
-}
-
-/* --- Sección de servicios --- */
-.servicios {
-  padding:2rem 3rem;
-  background-color: rgb(191 219 127);
-}
-
-.subtitulo {
-  text-align: center;
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
-}
-
-/* Contenedor principal: doctora + cards */
-.contenido-servicios {
-  display: flex;
-  align-items: center; /* centrado vertical */
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-/* Imagen doctora */
-.doctora img {
-  max-width: 330px; /* la agrandamos */
-  height: auto;
-  object-fit: contain;
-  margin-top: 0.5rem; /* para que no quede pegada al título */
-}
-
-/* Grilla de cards */
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.5rem;
-  flex: 1; /* ocupa todo el espacio restante */
-}
-
-/* Estilos de cada card */
-.card {
-  text-align: center;
-  background: #fff;
-  border-top: 4px solid rgb(234 127 47);
-  border-radius: 1rem;
-  padding: 1.5rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  transition: transform 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.card h4 {
-  font-size: 1.2rem;
-  color: #2b772e; 
-  margin-bottom: 0.5rem;
-}
-
-.card .descripcion {
-  font-size: 0.95rem;
-  
-  line-height: 1.4;
+  header.navbar {
+    height: auto;
+    flex-direction: row; /* mantiene logo izquierda - hamburguesa derecha */
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+  }
 }
 
 /* --- Responsive --- */
@@ -267,51 +158,19 @@ nav ul {
   }
 }
 
-/* Sección testimonios */
-.testimonios {
-  padding: 2rem 3rem 0.8rem 3rem; 
-  background-color: #f9f9f9;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-.subtitulo1 {
-  text-align: center;
-  font-size: 1.5rem;
-  font-family:"Poetsen One", sans-serif;
-  color: #2b772e;
-  margin-bottom: 2rem;
-}
-
-.box-testimonios {
-  display: flex;
-  gap: 2rem; /* Espacio entre los testimonios */
-  flex-wrap: wrap; /* Permite que se acomoden en varias líneas si no hay espacio */
-  justify-content: center;
-}
-
-.testimonial {
-  flex: 1 1 300px; /* Se adaptan al ancho disponible, mínimo 300px */
-  background-color: rgb(193, 218, 137); 
-  border-left: 5px solid #4CAF50;
-  padding: 1rem 1.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  font-style: italic;
-  border-radius: 8px;
-}
-
 /* --- Footer general --- */
 .footer {
   background-color: #3a7015; 
   color: #fff;
   font-family: 'Segoe UI', sans-serif;
-  margin-top: 3rem;
+  margin-top: 0;
 }
 
 /* Contenido principal */
 .footer-content {
   max-width: 800px; /* más angosto y elegante */
   margin: 0 auto;
-  padding: 1rem 1.5rem;
+  padding: 1rem 1.5rem 0.5rem 1.5rem;
   text-align: center;
 }
 
@@ -327,7 +186,6 @@ nav ul {
   font-family: cursive;
   margin-bottom: 0.3rem;
   color: #d4f1f9;
-
 }
 
 .footer-left p {
@@ -354,11 +212,15 @@ nav ul {
 
 /* Franja de copyright */
 .footer > div:last-child {
-  background-color: #011f01; /* contraste con el cuerpo */
-  text-align: center;
-  padding: 0.5rem;
+  background-color: #011f01;
+  display: flex;
+  justify-content: center;   /* Centra horizontalmente */
+  align-items: center;       /* Centra verticalmente */
+  height: 2rem;            /* Asegura espacio vertical suficiente */
   font-size: 0.85rem;
   margin-top: 0.5rem;
+  padding-top: 0.6rem;
+  color: white;        
 }
 
 

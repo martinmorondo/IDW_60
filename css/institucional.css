@@ -1,0 +1,29 @@
+/* ===== Main ===== */
+main {
+  padding: 2rem 1rem;
+}
+
+main h2 {
+  color: #75ae47; /* Verde oscuro */
+  margin-bottom: 0.8rem;
+}
+
+main p {
+  color: #323637;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.values {
+  list-style: none;
+  padding: 0;
+}
+
+.values li {
+  background: #bfdb7f; /* Verde claro */
+  margin: 0.5rem 0;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #323637;
+}

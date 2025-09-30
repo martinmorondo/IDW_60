@@ -1,0 +1,71 @@
+main h2 {
+    color: #333333;
+    font-size: 1.8em;
+    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    text-align: center;
+}
+
+/* --- Formulario de Turnos --- */
+.form-turnos {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 2.5rem;
+    background-color: #E5E0DE;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    text-align: left;
+}
+
+.form-turnos .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-turnos label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #323637;
+    font-weight: bold;
+}
+
+/* Estilo unificado para inputs, selects y textareas */
+.form-turnos input,
+.form-turnos select,
+.form-turnos textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #455F78;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-turnos input:focus,
+.form-turnos select:focus,
+.form-turnos textarea:focus {
+    outline: none;
+    border-color: #1D3557;
+    box-shadow: 0 0 5px rgba(29, 53, 87, 0.5);
+}
+
+.form-turnos .btn-submit {
+    display: block;
+    width: 100%;
+    background-color: #EC822F;
+    color: #E5E0DE;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-turnos .btn-submit:hover {
+    background-color: #ff6f02;
+}
+
+

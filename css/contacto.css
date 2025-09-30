@@ -1,0 +1,133 @@
+section {
+    margin-top: 40px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+}
+
+/* ---------- FORMULARIO ---------- */
+.formulario {
+    width: 90%;
+    max-width: 600px;
+    margin: 2rem auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgba(239, 198, 108, 0.7);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+.formulario h1 {
+    margin-bottom: 25px;
+    font-size: 2em;
+    color: #323637;
+    text-align: center;
+}
+
+legend {
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+}
+
+input,
+textarea {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #75ae47;
+    outline: none;
+    box-shadow: 0 0 6px rgba(117,174,71,0.5);
+}
+
+.btn-consulta {
+    display: block;
+    width: 100%;
+    margin-top: 30px;
+    padding: 16px;
+    font-size: 1.2em;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #75ae47;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+
+.OpcionesContacto {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    /* separación entre tarjetas */
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.OpcionesContacto div {
+    flex: 1 1 200px;
+    /* todas las tarjetas ocupan el mismo ancho */
+    margin: 10px;
+    border-radius: 12px;
+    padding: 25px 20px;
+    text-align: center;
+    background: #f8f9fa;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.OpcionesContacto div:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.OpcionesContacto i {
+  font-size: 2rem;
+  color: #75ae47;
+  margin-bottom: 10px;
+}
+
+.OpcionesContacto h2 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #323637;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 991px) {
+  .formulario {
+    width: 90%;
+  }
+
+  .OpcionesContacto {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .OpcionesContacto div {
+    width: 100%;
+    max-width: 400px;
+  }
+}
