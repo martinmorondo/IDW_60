@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VITA KIDS - Inicio</title>
     <link rel="icon" href="imagenes/favicon1.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/inicio.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
@@ -13,30 +14,40 @@
 </head>
 
 <body>
-
-    <header>
-        <div class="logo">
-            <a href="inicio.html" class="logo">
+    <!-- HEADER / NAVBAR -->
+    <header class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            
+            <!-- Logo + Título -->
+            <a href="inicio.html" class="logo d-flex flex-column align-items-center text-center text-decoration-none">
                 <img src="imagenes/logo_sin_fondo.png" alt="Logo de la página">
+                <h1>Centro Integral de Salud Infantil</h1>
             </a>
-            <h1>Centro Integral de Salud Infantil</h1>
+    
+            <!-- Botón hamburguesa -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav" aria-controls="menuNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Menú de navegación -->
+            <nav class="collapse navbar-collapse" id="menuNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="inicio.html" class="nav-link active">Inicio</a></li>
+                    <li class="nav-item"><a href="institucional.html" class="nav-link">Institucional</a></li>
+                    <li class="nav-item"><a href="contacto.html" class="nav-link">Contacto</a></li>
+                    <li class="nav-item"><a href="turnos.html" class="nav-link">Solicitar Turno</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul>
-                <li><a href="inicio.html" class="active">Inicio</a></li>
-                <li><a href="institucional.html">Institucional</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="turnos.html">Solicitar Turno</a></li>
-            </ul>
-        </nav>
     </header>
-
+        
+    
     <section class="video-banner">
         <video autoplay muted loop playsinline>
             <source src="videos/video_banner.mp4" type="video/mp4">
         </video>
     </section>
-
+    
     <main>
         <section class="presentacion">
             <div class="slogan-bloque">
@@ -47,13 +58,13 @@
             <div class="box-descripcion">
                 <img src="imagenes/icono.png" alt="Icono decorativo">
                 <h2>Nosotros</h2>
-                <br>
+                    
                 <p>
                     Somos un centro integral dedicado a la salud y el desarrollo infantil. Brindamos atención pediátrica, terapéutica y especializada para acompañar a cada familia en las etapas claves del crecimiento de sus niños. Contamos con un equipo multidisciplinario que aborda cada problemática de salud con pasión, compromiso e idoneidad científica a fin proporcionar atención médica de calidad. Nuestros profesionales son altamente reconocidos y valorados en el campo de la medicina pediátrica.
-               </p>
+                </p>
             </div>
-          </section>
-          
+        </section>
+              
         <section class="consultas">
             <div class="horario-bloque">
                 <img src="imagenes/horario.png" alt="Icono decorativo">
@@ -63,13 +74,13 @@
             </div>
             <div class="botones-consultas">
                 <ul>
-                    <li><a href="#">Consultar Obras Sociales</a></li>
-                    <li><a href="#">Consultar Especialidades</a></li>
-                    <li><a href="#">Solicitar Turnos</a></li>
+                    <li><a href="obras-sociales.html">Consultar Obras Sociales</a></li>
+                    <li><a href="especialidades.html">Consultar Especialidades</a></li>
+                    <li><a href="turnos.html">Solicitar Turnos</a></li>
                 </ul>
             </div>
         </section>
-
+    
         <section class="servicios">
             <h2 class="subtitulo">Nuestros Servicios</h2>
             <div class="contenido-servicios">
@@ -116,13 +127,77 @@
                 </div>
             </div>
         </section>
-
+    
+        <!-- Carrusel de Testimonios -->
         <section class="testimonios">
             <h3 class="subtitulo1">Lo que dicen las familias</h3>
-            <div class="box-testimonios">
-                <blockquote class="testimonial">"El equipo de Vita Kids nos dio tranquilidad y acompañamiento desde la primera semana. Atención cálida y muy profesional." — María, mamá de Lucas</blockquote>
-                <blockquote class="testimonial">"En Vita Kids encontramos un lugar donde nuestro hijo se siente seguro y cuidado. Profesionales atentos y amorosos en cada visita." — Ana, mamá de Mateo</blockquote>
-            </div>   
+            <div id="carouselTestimonios" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+  
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active">
+                        <div class="box-testimonios">
+                            <blockquote class="testimonial">
+                                <img src="imagenes/comillas.png" alt="comillas" class="quote-img">
+                                "El equipo de Vita Kids nos dio tranquilidad y acompañamiento desde la primera semana. Atención cálida y muy profesional."  
+                                <footer>— María, mamá de Lucas</footer>
+                                <div class="stars">★★★★★</div>
+                            </blockquote>
+                            <blockquote class="testimonial">
+                                <img src="imagenes/comillas.png" alt="comillas" class="quote-img">
+                                "En Vita Kids encontramos un lugar donde nuestro hijo se siente seguro y cuidado. Profesionales atentos y amorosos en cada visita."  
+                                <footer>— Ana, mamá de Mateo</footer>
+                                <div class="stars">★★★★☆</div>
+                            </blockquote>
+                        </div>
+                     </div>
+  
+                    <!-- Slide 2 -->
+                    <div class="carousel-item">
+                        <div class="box-testimonios">
+                            <blockquote class="testimonial">
+                                <img src="imagenes/comillas.png" alt="comillas" class="quote-img">
+                                "Siempre nos sentimos escuchados y acompañados en cada etapa. Un gran equipo humano."  
+                                <footer>— Pedro, papá de Sofía</footer>
+                                <div class="stars">★★★★★</div>
+                            </blockquote>
+                            <blockquote class="testimonial">
+                                <img src="imagenes/comillas.png" alt="comillas" class="quote-img">
+                                "Mis hijos aman venir aquí. Se nota el compromiso y el cariño en cada detalle."  
+                                <footer>— Laura, mamá de Tomás y Valentina</footer>
+                                <div class="stars">★★★★★</div>
+                            </blockquote>
+                        </div>
+                    </div>
+  
+                    <!-- Slide 3 -->
+                    <div class="carousel-item">
+                        <div class="box-testimonios">
+                            <blockquote class="testimonial">
+                                <img src="imagenes/comillas.png" alt="comillas" class="quote-img">
+                                "La atención es excelente, siempre dispuestos a resolver nuestras dudas con paciencia. Ampliamente recomendado."  
+                                <footer>— Carolina, mamá de Martina</footer>
+                                <div class="stars">★★★★★</div>
+                            </blockquote>
+                            <blockquote class="testimonial">
+                                <img src="imagenes/comillas.png" alt="comillas" class="quote-img">
+                                "Recomiendo Vita Kids a todas las familias, se siente como un segundo hogar para los niños. Excelentes profesionales y cálidas personas."  
+                                <footer>— Jorge, papá de Nicolás</footer>
+                                <div class="stars">★★★★☆</div>
+                            </blockquote>
+                        </div>
+                    </div>
+  
+                </div>
+  
+                <!-- Controles -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselTestimonios" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselTestimonios" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
         </section>
     </main>
 
@@ -145,6 +220,7 @@
           <p>&copy; 2025 Vita Kids S.A - Todos los derechos reservados.</p>
         </div>
     </footer>    
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
