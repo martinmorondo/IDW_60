@@ -1,79 +1,83 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VITA KIDS - Inicio</title>
-    <link rel="icon" href="imagenes/favicon1.ico" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="css/estilos.css">
-    <link rel="stylesheet" href="css/EstiloContacto.css">
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Institucional</title>
 
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Estilos del grupo -->
+  <link rel="stylesheet" href="estilos.css">
+
+  <!-- Link extra pedido -->
+  <link rel="stylesheet" href="css/Estilo.css">
+</head>
 <body>
 
-    <header>
-        <div class="logo">
-            <a href="inicio.html" class="logo">
-                <img src="imagenes/logo_sin_fondo.png" alt="Logo de la página">
-            </a>
-            <h1>Centro Integral de Salud Infantil</h1>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="inicio.html">Mi Sitio</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="inicio.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link active" href="institucional.html">Institucional</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENIDO -->
+  <main class="container my-5">
+    <h1 class="text-center mb-4">Institucional</h1>
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Nuestra Historia</h5>
+            <p class="card-text">Somos una institución dedicada a ofrecer servicios de calidad, con más de 10 años de experiencia en el sector.</p>
+          </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="inicio.html">Inicio</a></li>
-                <li><a href="institucional.html" class="active">Institucional</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="turnos.html">Solicitar Turno</a></li>
-            </ul>
-        </nav>
-    </header>
-    <hr>
-        <main>
-            <section>
-            <h2>¿Quiénes Somos?</h2>
-            <p>Somos un centro integral dedicado a la salud y el desarrollo infantil. En Vita Kids brindamos atención pediátrica, terapéutica y especializada para apoyar el crecimiento saludable de los niños.</p>
-        </section>
-        <section>
-            <h2>Misión</h2>
-            <p>Ofrecer servicios de salud y desarrollo infantil con calidad, calidez y compromiso, promoviendo el bienestar integral de cada niño y su familia.</p>
-        </section>
-        <section>
-            <h2>Visión</h2>
-            <p>Ser un centro reconocido por su excelencia en atención pediátrica y terapéutica, contribuyendo al desarrollo pleno de la infancia en nuestra comunidad.</p>
-        </section>
-        <section>
-            <h2>Valores</h2>
-            <ul class="values">
-                <li>Compromiso</li>
-                <li>Calidad</li>
-                <li>Respeto</li>
-                <li>Empatía</li>
-                <li>Innovación</li>
-            </ul>
-        </section>
-    </main>
-   <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-left">
-                <img src="imagenes/logo_sin_fondo.png" alt="Logo Vita Kids" class="logo-footer">
-                <h3><strong>Centro Integral de Salud Infantil 💚</strong></h3>
-                <p>Av. San Martín 123, CABA, Argentina</p>
-            </div>
-            <div class="iconos-contacto">
-                <a href="mailto:consultas@vitakids.com" aria-label="Correo electrónico"><i class="fas fa-envelope"></i></a> 
-                <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" target="_blank" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
-            </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Misión</h5>
+            <p class="card-text">Brindar soluciones accesibles y confiables, priorizando la satisfacción de nuestros clientes.</p>
+          </div>
         </div>
-      
-        <div>
-          <p>&copy; 2025 Vita Kids S.A - Todos los derechos reservados.</p>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Visión</h5>
+            <p class="card-text">Ser referentes en innovación y compromiso social en nuestra área de trabajo.</p>
+          </div>
         </div>
-    </footer>   
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Valores</h5>
+            <p class="card-text">Respeto, transparencia, trabajo en equipo y mejora continua.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-dark text-white text-center py-3">
+    <p>© 2025 - Mi Sitio Web</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
