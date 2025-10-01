@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 1rem;
+    font-size: 1rem; /* Fuente relativa y escalable a cualquier dispositivo */
     line-height: 1.6;
     background-color: #f4f4f4; 
     color: #333;
