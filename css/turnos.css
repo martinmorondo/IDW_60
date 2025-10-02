@@ -8,6 +8,10 @@ main h2 {
     text-align: center;
 }
 
+main i {
+    color: #388E3C;
+}
+
 /* --- Formulario de Turnos --- */
 .form-turnos {
     max-width: 700px;

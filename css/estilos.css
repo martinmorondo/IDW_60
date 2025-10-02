@@ -17,7 +17,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     background-color: #f4f4f4; 
-    color: #333;
+    /* color: #333; */
 }
 
 /* Estilos generales del header */
@@ -70,7 +70,7 @@ header.navbar {
   padding: 0.37rem 1.87rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  height: 5rem;
+  /* height: 5rem; */
   position: fixed;
   top: 0;
   width: 100%;
@@ -87,7 +87,7 @@ header.navbar {
 
 /* Estilo de los enlaces */
 .navbar-nav .nav-link {
-  color: #444 !important; /* Forzamos tu color gris */
+  color: #444 !important; 
   font-weight: 500;
   font-size: 1rem;
   padding: 8px 12px;
@@ -104,7 +104,7 @@ header.navbar {
 /* Active */
 .navbar-nav .nav-link.active {
   background-color: rgb(78, 148, 43);
-  color: white;
+  color: white !important;
 }
 
  /* HAMBURGUESA */
@@ -145,17 +145,38 @@ header.navbar {
   }
 }
 
-/* --- Responsive --- */
-@media (max-width: 900px) {
-  .contenido-servicios {
-    flex-direction: column;
-    align-items: center;
-  }
+/* Grilla de cards */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  flex: 1; /* ocupa todo el espacio restante */
+}
 
-  .doctora img {
-    max-width: 200px;
-    margin-bottom: 1.5rem;
-  }
+/* Estilos de cada card */
+.card {
+  text-align: center;
+  background: #fff;
+  border-top: 4px solid rgb(234 127 47);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h4 {
+  font-size: 1.2rem;
+  color: #2b772e; 
+  margin-bottom: 0.5rem;
+}
+
+.card .descripcion {
+  font-size: 0.95rem;
+  line-height: 1.4;
 }
 
 /* --- Footer general --- */
