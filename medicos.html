@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración de Médicos</title>
+    <link rel="icon" href="imagenes/favicon1.ico" type="image/x-icon">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/formularios.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet" /> 
+</head>
+
+<body>
+<!-- HEADER / NAVBAR -->
+    <header class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+        
+            <!-- Logo + Título -->
+            <a href="inicio.html" class="logo d-flex flex-column align-items-center text-center text-decoration-none">
+                <img src="imagenes/logo_sin_fondo.png" alt="Logo de la página">
+                <h1>Centro Integral de Salud Infantil</h1>
+            </a>
+
+            <!-- Botón hamburguesa -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav" aria-controls="menuNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Menú de navegación interno (admin)-->
+            <nav class="collapse navbar-collapse" id="menuNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="medicos.html" class="nav-link active">Médicos</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Especialidades</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Turnos</a></li>
+                    <li class="nav-item">
+                      <a href="inicio.html" class="nav-link">
+                        <i class="fas fa-sign-out-alt"></i> Salida
+                      </a>
+                    </li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container py-4">
+          <h2 class="text-center mb-4 text-success">Administración de Médicos</h2>
+    
+          <!-- Formulario -->
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-verde text-negrita">Formulario: Personal Médico</div>
+            <div class="card-body">
+              <form id="medicoForm" class="row g-3">
+                <div class="col-md-4">
+                  <label for="id" class="form-label">ID</label>
+                  <input type="text" name="id" id="id" class="form-control" required />
+                </div>
+                <div class="col-md-4">
+                  <label for="matricula" class="form-label">Matrícula Profesional</label>
+                  <input type="text" name="matricula" id="matricula" class="form-control" required />
+                </div>
+                <div class="col-md-4">
+                  <label for="especialidadId" class="form-label">Especialidad</label>
+                  <select name="especialidadId" id="especialidadId" class="form-select" required>
+                    <option value="">Seleccione una Especialidad</option>
+                    <option value="1">Pediatría General</option>
+                    <option value="2">Neurología pediátrica</option>
+                    <option value="3">Cardiología pediátrica</option>
+                    <option value="4">Psicología Infantil</option>
+                    <option value="5">Psicopedagogía</option>
+                    <option value="6">Fonoaudiología</option>
+                    <option value="7">Oftalmología</option>
+                    <option value="8">Fisioterapia Infantil</option>
+                    <option value="9">Nutrición Infantil</option>
+                    <option value="10">Odontopediatría</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="apellidos" class="form-label">Apellidos</label>
+                  <input type="text" name="apellidos" id="apellidos" class="form-control" required />
+                </div>
+                <div class="col-md-6">
+                  <label for="nombres" class="form-label">Nombres</label>
+                  <input type="text" name="nombres" id="nombres" class="form-control" required />
+                </div>
+                <div class="col-12">
+                  <label for="descripcion" class="form-label">Descripción</label>
+                  <textarea name="descripcion" id="descripcion" class="form-control" rows="3" placeholder="Presentación profesional..."></textarea>
+                </div>
+                <div class="col-md-6">
+                  <label for="obrasSociales" class="form-label">Obras Sociales que acepta</label>
+                  <select name="obrasSociales[]" id="obrasSocialesId" class="form-select" multiple required>
+                    <option value="101">OSDE</option>
+                    <option value="102">OSPE</option>
+                    <option value="103">Swiss Medical</option>
+                    <option value="104">Medifé</option>
+                    <option value="105">Medicus</option>
+                    <option value="106">Galeno</option>
+                    <option value="107">OSECAC</option>
+                    <option value="108">OSDIPP</option>
+                    <option value="109">OSTIG</option>
+                    <option value="110">OMINT</option>
+                    <option value="111">Sancor Salud</option>
+                    <option value="112">Accord Salud</option>
+                  </select> 
+                </div>
+                <div class="col-md-6">
+                  <label for="valorConsulta" class="form-label">Valor de la consulta</label>
+                  <input type="number" step="0.01" name="valorConsulta" id="valorConsulta" class="form-control" required />
+                </div>
+                <div class="col-md-6">
+                  <label for="fotografia" class="form-label">Fotografía</label>
+                  <input type="file" name="fotografia" id="fotografia" class="form-control" accept="image/*" />
+                </div>
+                <div class="col-12 text-end">
+                  <button type="submit" class="btn btn-verde">Guardar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+    
+          <!-- Tabla -->
+          <div class="card shadow-sm">
+            <div class="card-header bg-verde text-negrita">Listado de Médicos</div>
+            <div class="card-body table-responsive">
+              <table class="table table-bordered table-hover table-verde" id="tablaMedicos">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Matrícula</th>
+                    <th>Apellidos</th>
+                    <th>Nombres</th>
+                    <th>Especialidad</th>
+                    <th>Valor Consulta</th>
+                    <th>Obras Sociales</th>
+                    <th>Fotografía</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <img src="imagenes/logo_sin_fondo.png" alt="Logo Vita Kids" class="logo-footer">
+                <h3><strong>Centro Integral de Salud Infantil 💚</strong></h3>
+                <p>Av. San Martín 123, CABA, Argentina</p>
+            </div>
+            <div class="iconos-contacto">
+                <a href="mailto:consultas@vitakids.com" aria-label="Correo electrónico"><i class="fas fa-envelope"></i></a> 
+                <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+      
+        <div>
+          <p>&copy; 2025 Vita Kids S.A - Todos los derechos reservados.</p>
+        </div>
+    </footer> 
+      <!-- Bootstrap JS -->
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- TomSelector JS -->
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>  
+    <script>
+      // Lista de selectores que usarán Tom Select
+      const selects = ["#especialidadId", "#obrasSocialesId"];
+    
+      selects.forEach(selector => {
+        new TomSelect(selector, {
+          // Si es el select de obras sociales → múltiples selecciones sin límite
+          maxItems: selector === "#obrasSocialesId" ? null : 1,
+          plugins: selector === "#obrasSocialesId" ? ['remove_button'] : [],
+          render: {
+            option: function (data, escape) {
+              return `<div style="padding: 5px;">${escape(data.text)}</div>`;
+            }
+          }
+        });
+      });
+    </script>
+    
+</body>
+</html>

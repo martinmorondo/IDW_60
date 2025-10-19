@@ -1,0 +1,121 @@
+body {
+    background: linear-gradient(to bottom, rgb(238, 221, 184), rgb(236, 153, 90));
+}
+
+.text-success {
+    color: #444!important;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 1.8rem;
+}
+
+.card.mb-4.shadow-sm,
+.card.shadow-sm{
+    margin-bottom: 3.5rem!important;
+}
+
+.text-negrita{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.bg-verde {
+    background-color: rgb(78, 148, 43)!important;
+    color: white;
+}
+
+.btn-verde {
+    background-color: rgb(78, 148, 43);
+    color: white;
+    font-weight: bold;
+}
+
+.btn-verde:hover {
+    background-color: rgb(183, 235, 131);
+    color: #2b772e;
+}
+
+.table-verde thead {
+    background-color: rgb(78, 148, 43);
+    color: white;
+}
+  
+/* Bordes verdes para los campos estándar */
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: rgb(78, 148, 43) !important;
+    box-shadow: 0 0 0 0.25rem rgba(78, 148, 43, 0.25) !important;
+}
+
+input,
+select,
+textarea {
+    border: 2px solid rgb(78, 148, 43)!important;
+    border-radius: 0.28rem!important;
+}
+
+/* 
+==========================================
+Tom Select: borde y sombra verde unificado
+========================================== */
+
+/* 1) Borde verde por defecto en todo Tom Select */
+.ts-wrapper.single,
+.ts-wrapper.multi {
+    border: 2px solid rgb(78, 148, 43) !important;
+    border-radius: 0.28rem !important;
+    background-color: #fff !important;
+    box-shadow: none !important;
+    outline: none !important; /* elimina contorno azul del navegador */
+}
+
+/* 2) Borde y sombra verde al hacer click, abrir dropdown o focus */
+.ts-wrapper.single.input-active .ts-control,
+.ts-wrapper.multi.input-active .ts-control,
+.ts-wrapper.single.is-open .ts-control,
+.ts-wrapper.multi.is-open .ts-control,
+.ts-wrapper.single:focus-within .ts-control,
+.ts-wrapper.multi:focus-within .ts-control {
+    border-color: rgb(78, 148, 43) !important;
+    box-shadow: 0 0 8px 4px rgba(78, 148, 43, 0.4) !important;
+    outline: none !important;
+}
+
+/* 3) Input interno - elimina contorno azul y aplica sombra verde */
+.ts-control .ts-input:focus {
+    outline: none !important;
+    box-shadow: 0 0 8px 4px rgba(78, 148, 43, 0.4) !important;
+}
+
+/* 4) Eliminar focus ring azul interno en Firefox */
+.ts-control .ts-input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/* 5) Quitar borde, sombra o fondo de los items seleccionados */
+.ts-control .item,
+.ts-control .item * {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    color: inherit !important;
+}
+
+/* 6) Evita que el input interno aporte borde extra */
+.ts-control input[type="text"],
+.ts-control input {
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+/* 7) Dropdown activo */
+.ts-dropdown .active {
+    background-color: rgb(78, 148, 43) !important;
+    color: white !important;
+}
