@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VITA KIDS - LogIn</title>
+    <link rel="icon" href="imagenes/favicon1.ico" type="image/x-icon">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+<!-- HEADER / NAVBAR -->
+    <header class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+        
+            <!-- Logo + Título -->
+            <a href="inicio.html" class="logo d-flex flex-column align-items-center text-center text-decoration-none">
+                <img src="imagenes/logo_sin_fondo.png" alt="Logo de la página">
+                <h1>Centro Integral de Salud Infantil</h1>
+            </a>
+
+            <!-- Botón hamburguesa -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav" aria-controls="menuNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Menú de navegación -->
+            <nav class="collapse navbar-collapse" id="menuNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="inicio.html" class="nav-link active">Inicio</a></li>
+                    <li class="nav-item"><a href="institucional.html" class="nav-link">Institucional</a></li>
+                    <li class="nav-item"><a href="especialidades.html" class="nav-link">Especialidades</a></li>
+                    <li class="nav-item"><a href="obras-sociales.html" class="nav-link">Obras Sociales</a></li>
+                    <li class="nav-item"><a href="contacto.html" class="nav-link">Contacto</a></li>
+                    <li class="nav-item"><a href="turnos.html" class="nav-link">Solicitar Turno</a></li>
+                    <li class="nav-item">
+                        <a href="login.html" class="nav-link">
+                          <i class="fas fa-user-circle fa-lg"></i> <span class="ms-1">LogIn</span>
+                        </a>
+                    </li>    
+                </ul>
+            </nav>
+        </div>
+    </header>
+   
+    <main class="d-flex justify-content-center align-items-center">
+      <div class="card">
+        <h3 class="text-center mb-4">Inicio de Sesión</h3>
+        <form>
+          <div class="mb-3">
+            <label for="username" class="form-label">Usuario</label>
+            <input type="text" class="form-control" id="username" placeholder="Ingresa tu usuario" required>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <div class="input-group">
+              <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña" required>
+              <button type="button" id="togglePassword" aria-label="Mostrar/ocultar contraseña">👁️</button>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary w-100 mt-3">Ingresar</button>
+        </form>
+      </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <img src="imagenes/logo_sin_fondo.png" alt="Logo Vita Kids" class="logo-footer">
+                <h3><strong>Centro Integral de Salud Infantil 💚</strong></h3>
+                <p>Av. San Martín 123, CABA, Argentina</p>
+            </div>
+            <div class="iconos-contacto">
+                <a href="mailto:consultas@vitakids.com" aria-label="Correo electrónico"><i class="fas fa-envelope"></i></a> 
+                <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+      
+        <div>
+          <p>&copy; 2025 Vita Kids S.A - Todos los derechos reservados.</p>
+        </div>
+    </footer> 
+
+    <!-- Bootstrap JS -->
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Archivos JS -->
+    <script src="config/usuarios.js"></script>
+    <script src="js/login.js"></script>
+     
+</body>
+</html>

@@ -12,7 +12,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet" /> 
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet" />
+     <!--Protección de ruta del admin-->
+    <script>
+      const usuarioActivo = JSON.parse(sessionStorage.getItem("usuarioActivo"));
+      if(!usuarioActivo){
+        alert("Acceso no autorizado. Serás redirigido a inicio.");
+        window.location.href = "inicio.html";
+      }
+    </script>
 </head>
 
 <body>
@@ -142,7 +150,9 @@
                     <th>Fotografía</th>
                   </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                  <!--Completar cuerpo de la tabla con js-->
+                </tbody>
               </table>
             </div>
           </div>
