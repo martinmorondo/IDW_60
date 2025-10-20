@@ -12,9 +12,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet" />
-     <!--Protección de ruta del admin-->
-    <script>
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet" /> 
+  <script>
       const usuarioActivo = JSON.parse(sessionStorage.getItem("usuarioActivo"));
       if(!usuarioActivo){
         alert("Acceso no autorizado. Serás redirigido a inicio.");
@@ -67,7 +66,7 @@
               <form id="medicoForm" class="row g-3">
                 <div class="col-md-4">
                   <label for="id" class="form-label">ID</label>
-                  <input type="text" name="id" id="id" class="form-control" required />
+                  <input type="text" name="id" id="id" class="form-control" />
                 </div>
                 <div class="col-md-4">
                   <label for="matricula" class="form-label">Matrícula Profesional</label>
@@ -103,7 +102,7 @@
                 </div>
                 <div class="col-md-6">
                   <label for="obrasSociales" class="form-label">Obras Sociales que acepta</label>
-                  <select name="obrasSociales[]" id="obrasSocialesId" class="form-select" multiple required>
+                  <select name="obrasSociales" id="obrasSocialesId" class="form-select" multiple required>
                     <option value="101">OSDE</option>
                     <option value="102">OSPE</option>
                     <option value="103">Swiss Medical</option>
@@ -124,7 +123,7 @@
                 </div>
                 <div class="col-md-6">
                   <label for="fotografia" class="form-label">Fotografía</label>
-                  <input type="file" name="fotografia" id="fotografia" class="form-control" accept="image/*" />
+                  <input type="url" name="fotografia" id="fotografia" class="form-control" placeholder="https://ejemplo.com/foto.jpg" />
                 </div>
                 <div class="col-12 text-end">
                   <button type="submit" class="btn btn-verde">Guardar</button>
@@ -148,11 +147,10 @@
                     <th>Valor Consulta</th>
                     <th>Obras Sociales</th>
                     <th>Fotografía</th>
+                    <th class="text-center">Acciones</th> 
                   </tr>
                 </thead>
-                <tbody>
-                  <!--Completar cuerpo de la tabla con js-->
-                </tbody>
+                <tbody id="tabla-medicos-body"></tbody>
               </table>
             </div>
           </div>
@@ -182,23 +180,9 @@
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
       <!-- TomSelector JS -->
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>  
-    <script>
-      // Lista de selectores que usarán Tom Select
-      const selects = ["#especialidadId", "#obrasSocialesId"];
-    
-      selects.forEach(selector => {
-        new TomSelect(selector, {
-          // Si es el select de obras sociales → múltiples selecciones sin límite
-          maxItems: selector === "#obrasSocialesId" ? null : 1,
-          plugins: selector === "#obrasSocialesId" ? ['remove_button'] : [],
-          render: {
-            option: function (data, escape) {
-              return `<div style="padding: 5px;">${escape(data.text)}</div>`;
-            }
-          }
-        });
-      });
-    </script>
+
+
+    <script src="js/admin.js" type="module"></script>
     
 </body>
 </html>
