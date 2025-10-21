@@ -1,0 +1,85 @@
+// js/especialidades.js
+
+// Inicializar LocalStorage si no existe
+if (!localStorage.getItem("especialidades")) {
+  const especialidadesIniciales = [
+    { id: 1, nombre: "Pediatría General", descripcion: "Atención médica integral para niños." },
+    { id: 2, nombre: "Neurología Pediátrica", descripcion: "Diagnóstico y tratamiento de trastornos neurológicos infantiles." },
+  ];
+  localStorage.setItem("especialidades", JSON.stringify(especialidadesIniciales));
+}
+
+let especialidades = JSON.parse(localStorage.getItem("especialidades")) || [];
+
+const form = document.getElementById("especialidadForm");
+const tablaBody = document.getElementById("tabla-especialidades-body");
+
+// Renderizar tabla
+function renderTabla() {
+  tablaBody.innerHTML = "";
+  especialidades.forEach(esp => {
+    const fila = document.createElement("tr");
+    fila.innerHTML = `
+      <td>${esp.id}</td>
+      <td>${esp.nombre}</td>
+      <td>${esp.descripcion}</td>
+      <td class="text-center">
+        <button class="btn btn-warning btn-sm me-2" onclick="editarEspecialidad(${esp.id})"><i class="fas fa-edit"></i></button>
+        <button class="btn btn-danger btn-sm" onclick="eliminarEspecialidad(${esp.id})"><i class="fas fa-trash"></i></button>
+      </td>
+    `;
+    tablaBody.appendChild(fila);
+  });
+}
+
+// Guardar cambios en LocalStorage
+function guardarLocal() {
+  localStorage.setItem("especialidades", JSON.stringify(especialidades));
+  renderTabla();
+  form.reset();
+  document.getElementById("id").value = "";
+}
+
+// Agregar o editar especialidad
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  const id = document.getElementById("id").value;
+  const nombre = document.getElementById("nombre").value.trim();
+  const descripcion = document.getElementById("descripcion").value.trim();
+
+  if (!nombre) {
+    alert("Debe ingresar un nombre de especialidad.");
+    return;
+  }
+
+  if (id) {
+    // Editar existente
+    const index = especialidades.findIndex(e => e.id == id);
+    especialidades[index] = { id: Number(id), nombre, descripcion };
+  } else {
+    // Crear nueva
+    const nuevoId = especialidades.length ? Math.max(...especialidades.map(e => e.id)) + 1 : 1;
+    especialidades.push({ id: nuevoId, nombre, descripcion });
+  }
+
+  guardarLocal();
+});
+
+// Editar especialidad
+window.editarEspecialidad = id => {
+  const esp = especialidades.find(e => e.id == id);
+  document.getElementById("id").value = esp.id;
+  document.getElementById("nombre").value = esp.nombre;
+  document.getElementById("descripcion").value = esp.descripcion;
+};
+
+// Eliminar especialidad
+window.eliminarEspecialidad = id => {
+  if (confirm("¿Seguro que deseas eliminar esta especialidad?")) {
+    especialidades = especialidades.filter(e => e.id != id);
+    guardarLocal();
+  }
+};
+
+// Render inicial
+renderTabla();
