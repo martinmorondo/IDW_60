@@ -42,16 +42,47 @@ const renderizarTabla = () => {
             <td>${medico.nombres}</td>
             <td>${getNombreEspecialidad(medico.especialidadId)}</td>
             <td>$${parseFloat(medico.valorConsulta).toFixed(2)}</td>
-            <td>${medico.obrasSociales.length} Aceptadas</td>
-            <td><img src="${medico.fotografia}" alt="${medico.nombres}" width="50" class="img-thumbnail"></td>
+            <td>${
+                medico.obrasSociales.length > 0
+                    ? medico.obrasSociales.map(osId => {
+                        const option = document.querySelector(`#obrasSocialesId option[value="${osId}"]`);
+                        const nombre = option ? option.textContent : `ID ${osId}`;
+                        return `<span class="d-block text-secondary fw-semibold">${nombre}</span>`;
+                    }).join('')
+                    : '<span class="text-muted">Sin obras sociales</span>'
+            }</td>
+            <td><img src="${medico.fotografia}" alt="${medico.nombres}" width="60" class="img-thumbnail"></td>
             <td class="text-center">
-                <button class="btn btn-warning btn-sm" onclick="cargarMedicoEnFormulario('${medico.id}')">Editar</button>
-                <button class="btn btn-danger btn-sm" onclick="eliminarMedico('${medico.id}')">Eliminar</button>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-outline-success btn-sm shadow-sm fw-bold" onclick="cargarMedicoEnFormulario('${medico.id}')">✏️ Editar</button>
+                    <button class="btn btn-outline-danger btn-sm shadow-sm fw-bold" onclick="eliminarMedico('${medico.id}')">🗑️ Eliminar</button>
+                </div>
             </td>
         `;
         tablaMedicosBody.appendChild(tr);
     });
 };
+
+// --- FUNCIÓN PARA MOSTRAR MENSAJES ---
+const mostrarMensaje = (texto, tipo = 'success') => {
+    const alerta = document.createElement('div');
+    alerta.className = `alert alert-${tipo}`;
+    alerta.textContent = texto;
+    document.getElementById('mensajes').appendChild(alerta);
+    setTimeout(() => alerta.remove(), 3000);
+};
+
+function generarIdNumerico(medicos) {
+    const ids = medicos
+        .map(m => parseInt(m.id))
+        .filter(n => !isNaN(n));
+
+    const siguienteId = ids.length > 0
+        ? Math.max(...ids) + 1
+        : 1;
+
+    return siguienteId.toString();
+}
 
 // --- LÓGICA DEL FORMULARIO (CRUD) ---
 const medicoForm = document.getElementById('medicoForm');
@@ -65,25 +96,53 @@ medicoForm.addEventListener('submit', (e) => {
     const apellidos = document.getElementById('apellidos').value;
     const nombres = document.getElementById('nombres').value;
     const descripcion = document.getElementById('descripcion').value;
-    const obrasSociales = tomSelectObrasSociales.getValue();
-    const valorConsulta = document.getElementById('valorConsulta').value;
+    const obrasSociales = Array.isArray(tomSelectObrasSociales.getValue()) 
+    ? tomSelectObrasSociales.getValue() 
+    : [];
+    const valorConsulta = parseFloat(document.getElementById('valorConsulta').value) || 0;
     const fotografia = document.getElementById('fotografia').value;
     const medicos = getMedicos();
 
+    // // Validación extra: campos obligatorios
+    // if (!matricula.trim() || !nombres.trim() || !especialidadId) {
+    //     mostrarMensaje('Por favor, completá matrícula, nombre y especialidad.', 'danger');
+    //     return;
+    // }
+
     if (id && medicos.some(m => m.id === id)) {
         // --- MODO EDICIÓN ---
+        const matriculaDuplicada = medicos.some(m => m.matricula === matricula && m.id !== id);
+
+        if (matriculaDuplicada) {
+            mostrarMensaje('⚠️ Esa matrícula ya está asignada a otro médico.', 'warning');
+            return;
+        }
+
         const medicoIndex = medicos.findIndex(m => m.id === id);
         if (medicoIndex > -1) {
             medicos[medicoIndex] = { id, matricula, especialidadId, apellidos, nombres, descripcion, obrasSociales, valorConsulta, fotografia };
         }
+        // localStorage.setItem('medicos', JSON.stringify(medicosIniciales));
+        mostrarMensaje('✔️Médico actualizado con éxito!', 'success');
+
     } else {
         // --- MODO CREACIÓN ---
+        const matriculaDuplicada = medicos.some(m => m.matricula === matricula);
+
+        if (!id && matriculaDuplicada) {
+            mostrarMensaje('⚠️ Ya existe un médico con esa matrícula.', 'warning');
+            return; // Evita que se cree el médico
+        }
+
         const nuevoMedico = {
-            id: Date.now().toString(), // Generamos ID único
-            matricula, especialidadId, apellidos, nombres, 
+            id: generarIdNumerico(medicos), // Generamos ID correlativo
+            matricula, especialidadId, apellidos, nombres,
             descripcion, obrasSociales, valorConsulta, fotografia
         };
+        
         medicos.push(nuevoMedico);
+        // localStorage.setItem('medicos', JSON.stringify(medicosIniciales));
+        mostrarMensaje('✔️ Médico agregado con éxito!', 'success');
     }
 
     guardarMedicos(medicos);
@@ -94,9 +153,15 @@ medicoForm.addEventListener('submit', (e) => {
 const resetFormulario = () => {
     medicoForm.reset();
     document.getElementById('id').value = '';
+    document.getElementById('id').readOnly = true;
+    document.getElementById('matricula').value = '';
+    document.getElementById('apellidos').value = '';
+    document.getElementById('nombres').value = '';
+    document.getElementById('descripcion').value = '';
+    document.getElementById('valorConsulta').value = '';
+    document.getElementById('fotografia').value = '';
     tomSelectEspecialidad.clear();
     tomSelectObrasSociales.clear();
-    document.getElementById('id').readOnly = false; // Habilitar el campo ID para nuevos ingresos
 }
 
 // Hacemos las funciones globales para poder llamarlas desde el HTML
@@ -115,9 +180,20 @@ window.cargarMedicoEnFormulario = (id) => {
         document.getElementById('valorConsulta').value = medico.valorConsulta;
         document.getElementById('fotografia').value = medico.fotografia;
 
-        // CAMBIO: Asignamos valores a los TomSelect
-        tomSelectEspecialidad.setValue(medico.especialidadId);
-        tomSelectObrasSociales.setValue(medico.obrasSociales);
+        // CAMBIO: Asignamos valores a los TomSelect con validación
+        if (document.querySelector(`#especialidadId option[value="${medico.especialidadId}"]`)) {
+            tomSelectEspecialidad.setValue(medico.especialidadId);
+        } else {
+            tomSelectEspecialidad.clear(); // Evita error si el valor no existe
+        }
+
+        // Filtramos solo las obras sociales que existen en el select actual
+        const opcionesValidas = Array.from(document.querySelectorAll('#obrasSocialesId option'))
+        .map(opt => opt.value);
+
+        const obrasSocialesValidas = medico.obrasSociales.filter(os => opcionesValidas.includes(os));
+
+        tomSelectObrasSociales.setValue(obrasSocialesValidas);
     }
 };
 
@@ -134,4 +210,8 @@ window.eliminarMedico = (id) => {
 document.addEventListener('DOMContentLoaded', () => {
     inicializarLocalStorage();
     renderizarTabla();
+});
+
+document.getElementById('btnLimpiar').addEventListener('click', () => {
+    resetFormulario();
 });

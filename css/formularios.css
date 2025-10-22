@@ -34,6 +34,11 @@ body {
     color: #2b772e;
 }
 
+.btn-verde:focus  {
+    outline: none;
+    box-shadow: none;
+}
+
 .table-verde thead {
     background-color: rgb(78, 148, 43);
     color: white;
@@ -118,4 +123,10 @@ Tom Select: borde y sombra verde unificado
 .ts-dropdown .active {
     background-color: rgb(78, 148, 43) !important;
     color: white !important;
+}
+
+/* Personaliza el color al pasar el mouse por las filas */
+.table-hover tbody tr:hover {
+    background-color: rgb(226, 243, 208); /* Verde claro */
+    transition: background-color 0.3s ease;
 }
