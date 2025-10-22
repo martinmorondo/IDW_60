@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VITA KIDS - Inicio</title>
+    <title>VITA KIDS - Gestión de Turnos</title>
     <link rel="icon" href="imagenes/favicon1.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/turnos.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="css/estilos.css">
-    <link rel="stylesheet" href="css/EstiloContacto.css">
 </head>
 
 <body>
@@ -32,14 +31,121 @@
             </ul>
         </nav>
     </header>
-    <hr>
+
     <main>
-        <section>
-            <h1>Estamos construyendo este sitio</h1>
-            <p>Perdona las molestias</p>
-            <p>Si necesitas contactarnos mientras tanto, <a href="mailto:hconsultas@vitakids.com">escrbenos</a> y te respondemos.</p>
+        <section class="gestion-turnos">
+            <h2>🩺 Gestión de Turnos Médicos</h2>
+            
+            <!-- FORMULARIO DE TURNOS -->
+            <div class="seccion-formulario">
+                <h3>Nuevo Turno / Editar Turno</h3>
+                <form id="formulario-turno" class="formulario-turnos">
+                    <input type="hidden" id="turno-id" value="">
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="paciente">
+                                <i class="fas fa-user"></i> Nombre del Paciente *
+                            </label>
+                            <input type="text" id="paciente" name="paciente" required placeholder="Ej: Juan Pérez">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="medicoId">
+                                <i class="fas fa-hashtag"></i> ID Médico *
+                            </label>
+                            <input type="number" id="medicoId" name="medicoId" required min="1" placeholder="Ej: 1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="medicoNombre">
+                                <i class="fas fa-user-md"></i> Nombre del Médico *
+                            </label>
+                            <input type="text" id="medicoNombre" name="medicoNombre" required placeholder="Ej: Dr. García">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="especialidad">
+                                <i class="fas fa-stethoscope"></i> Especialidad *
+                            </label>
+                            <select id="especialidad" name="especialidad" required>
+                                <option value="">Seleccione una especialidad...</option>
+                                <option value="Pediatría general">Pediatría general</option>
+                                <option value="Psicología Infantil">Psicología Infantil</option>
+                                <option value="Psicopedagogía">Psicopedagogía</option>
+                                <option value="Fonoaudiología">Fonoaudiología</option>
+                                <option value="Oftalmología infantil">Oftalmología infantil</option>
+                                <option value="Kinesiología Infantil">Kinesiología Infantil</option>
+                                <option value="Nutrición Infantil">Nutrición Infantil</option>
+                                <option value="Odontopediatría">Odontopediatría</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fecha">
+                                <i class="fas fa-calendar-alt"></i> Fecha del Turno *
+                            </label>
+                            <input type="date" id="fecha" name="fecha" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hora">
+                                <i class="fas fa-clock"></i> Hora del Turno *
+                            </label>
+                            <input type="time" id="hora" name="hora" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="estado">
+                                <i class="fas fa-info-circle"></i> Estado *
+                            </label>
+                            <select id="estado" name="estado" required>
+                                <option value="pendiente">Pendiente</option>
+                                <option value="confirmado">Confirmado</option>
+                                <option value="cancelado">Cancelado</option>
+                                <option value="completado">Completado</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="motivo">
+                                <i class="fas fa-file-medical"></i> Motivo de Consulta *
+                            </label>
+                            <textarea id="motivo" name="motivo" required placeholder="Describa el motivo de la consulta..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="botones-form">
+                        <button type="button" class="btn-limpiar" onclick="limpiarFormulario()">
+                            <i class="fas fa-eraser"></i> Limpiar
+                        </button>
+                        <button type="submit" class="btn-guardar">
+                            <i class="fas fa-save"></i> Guardar Turno
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- TABLA DE TURNOS -->
+            <div class="seccion-tabla">
+                <h3>📋 Lista de Turnos</h3>
+                <div class="tabla-container">
+                    <div id="tabla-turnos"></div>
+                </div>
+            </div>
         </section>
     </main>
+
+    <!-- MODAL DE DETALLES -->
+    <div id="modal-detalle" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
+            <h3><i class="fas fa-clipboard-list"></i> Detalles del Turno</h3>
+            <hr>
+            <div id="detalle-turno"></div>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-left">
@@ -48,18 +154,19 @@
                 <p>Av. San Martín 123, CABA, Argentina</p>
             </div>
             <div class="iconos-contacto">
-                <a href="mailto:consultas@vitakids.com" aria-label="Correo electrónico"><i
-                        class="fas fa-envelope"></i></a>
+                <a href="mailto:consultas@vitakids.com" aria-label="Correo electrónico"><i class="fas fa-envelope"></i></a> 
                 <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 <a href="#" target="_blank" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
-
+      
         <div>
-            <p>&copy; 2025 Vita Kids S.A - Todos los derechos reservados.</p>
+          <p>&copy; 2025 Vita Kids S.A - Todos los derechos reservados.</p>
         </div>
-    </footer>
-</body>
+    </footer>    
 
+    <script type="module" src="js/turnos.js"></script>
+
+</body>
 </html>

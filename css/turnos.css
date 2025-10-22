@@ -1,0 +1,417 @@
+/* ============================================
+   ESTILOS ESPECÍFICOS PARA GESTIÓN DE TURNOS
+   Paleta Vita Kids:
+   #323637 onix
+   #1D3557 barkley blue
+   #455F78 payne gray
+   #95BFB9 Cambridge Blue 
+   #E5E0DE Platino
+   ============================================ */
+
+/* SECCIÓN PRINCIPAL */
+.gestion-turnos {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.gestion-turnos h2 {
+    color: #1D3557;
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 2rem;
+    border-bottom: 4px solid #1D3557;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}
+
+.gestion-turnos h3 {
+    color: #1D3557;
+    font-size: 1.8em;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #95BFB9;
+    padding-bottom: 0.5rem;
+}
+
+/* ============================================
+   FORMULARIO
+   ============================================ */
+
+.seccion-formulario {
+    background-color: #E5E0DE;
+    padding: 2.5rem;
+    border-radius: 15px;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-turnos {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #1D3557;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-group label i {
+    color: #95BFB9;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 0.8rem;
+    border: 2px solid #95BFB9;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s ease;
+    background-color: white;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #1D3557;
+    box-shadow: 0 0 0 3px rgba(29, 53, 87, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* BOTONES DEL FORMULARIO */
+.botones-form {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.btn-guardar,
+.btn-limpiar {
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-guardar {
+    background-color: #1D3557;
+    color: #E5E0DE;
+}
+
+.btn-guardar:hover {
+    background-color: #455F78;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(29, 53, 87, 0.3);
+}
+
+.btn-limpiar {
+    background-color: #95BFB9;
+    color: #323637;
+}
+
+.btn-limpiar:hover {
+    background-color: #7aa9a3;
+}
+
+/* ============================================
+   TABLA DE TURNOS
+   ============================================ */
+
+.seccion-tabla {
+    background-color: #E5E0DE;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tabla-container {
+    overflow-x: auto;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.tabla-turnos {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.tabla-turnos thead {
+    background-color: #1D3557;
+    color: #E5E0DE;
+}
+
+.tabla-turnos th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.tabla-turnos td {
+    padding: 1rem;
+    border-bottom: 1px solid #E5E0DE;
+    color: #323637;
+}
+
+.tabla-turnos tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.tabla-turnos tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* BADGES DE ESTADO */
+.badge {
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.estado-pendiente {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.estado-confirmado {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.estado-cancelado {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.estado-completado {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+/* BOTONES DE ACCIONES */
+.acciones {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-ver,
+.btn-editar,
+.btn-eliminar {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-ver {
+    background-color: #95BFB9;
+    color: #323637;
+}
+
+.btn-ver:hover {
+    background-color: #7aa9a3;
+    transform: translateY(-2px);
+}
+
+.btn-editar {
+    background-color: #455F78;
+    color: #E5E0DE;
+}
+
+.btn-editar:hover {
+    background-color: #364757;
+    transform: translateY(-2px);
+}
+
+.btn-eliminar {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-eliminar:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   MODAL
+   ============================================ */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(50, 54, 55, 0.7);
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-contenido {
+    background-color: white;
+    margin: 8% auto;
+    padding: 2.5rem;
+    border-radius: 15px;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.3s;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-contenido h3 {
+    color: #1D3557;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.modal-contenido hr {
+    border: none;
+    border-top: 2px solid #95BFB9;
+    margin: 1.5rem 0;
+}
+
+.cerrar-modal {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #455F78;
+    transition: color 0.3s;
+}
+
+.cerrar-modal:hover {
+    color: #1D3557;
+}
+
+#detalle-turno {
+    line-height: 2;
+    color: #323637;
+}
+
+#detalle-turno strong {
+    color: #1D3557;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .gestion-turnos {
+        padding: 1rem;
+    }
+
+    .gestion-turnos h2 {
+        font-size: 1.8em;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .botones-form {
+        flex-direction: column;
+    }
+
+    .btn-guardar,
+    .btn-limpiar {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .tabla-turnos {
+        font-size: 0.85rem;
+    }
+
+    .tabla-turnos th,
+    .tabla-turnos td {
+        padding: 0.6rem;
+    }
+
+    .acciones {
+        flex-direction: column;
+    }
+
+    .modal-contenido {
+        margin: 20% auto;
+        padding: 1.5rem;
+    }
+}
+
+/* MENSAJE CUANDO NO HAY TURNOS */
+.tabla-turnos tbody tr td[colspan] {
+    text-align: center;
+    padding: 3rem;
+    color: #455F78;
+    font-style: italic;
+}
