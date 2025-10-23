@@ -7,15 +7,28 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // --- FUNCIÓN AUXILIAR PARA OBTENER NOMBRES ---
-    const getNombreEspecialidad = (id) => {
-        const especialidades = {
-            "1": "Pediatría General", "2": "Neurología pediátrica", "3": "Cardiología pediátrica",
-            "4": "Psicología Infantil", "5": "Psicopedagogía", "6": "Fonoaudiología",
-            "7": "Oftalmología", "8": "Fisioterapia Infantil", "9": "Nutrición Infantil",
-            "10": "Odontopediatría"
-        };
-        return especialidades[id] || 'Especialidad no definida';
+    // --- Nombres de especialidades ---
+    const especialidades = {
+        "1": "Pediatría General", "2": "Neurología pediátrica", "3": "Cardiología pediátrica",
+        "4": "Psicología Infantil", "5": "Psicopedagogía", "6": "Fonoaudiología",
+        "7": "Oftalmología", "8": "Fisioterapia Infantil", "9": "Nutrición Infantil",
+        "10": "Odontopediatría", "11": "Análisis Clínicos"
+    };
+
+    // --- Mapa de obras sociales ---
+    const obrasSocialesMap = {
+        "101": "OSDE",
+        "102": "OSPE",
+        "103": "Swiss Medical",
+        "104": "Medifé",
+        "105": "Medicus",
+        "106": "Galeno",
+        "107": "OSECAC",
+        "108": "OSDIPP",
+        "109": "OSTIG",
+        "110": "OMINT",
+        "111": "Sancor Salud",
+        "112": "Accord Salud"
     };
 
     staffContainer.innerHTML = ''; // Limpiamos el contenedor
@@ -25,7 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
         card.className = 'col-md-6 col-lg-4';
 
         const nombreCompleto = `${medico.nombres} ${medico.apellidos}`;
-        const especialidadNombre = getNombreEspecialidad(medico.especialidadId);
+        const especialidadNombre = especialidades[medico.especialidadId] || 'Especialidad no definida';
+
+        // Aquí convertimos correctamente los IDs a nombres
+        const obrasSocialesNombres = medico.obrasSociales && medico.obrasSociales.length > 0
+            ? medico.obrasSociales.map(id => obrasSocialesMap[id] || `ID ${id}`).join(', ')
+            : 'Sin obras sociales';
 
         card.innerHTML = `
             <div class="card team-card h-100">
@@ -34,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="card-overlay">
                         <h5 class="card-title"><strong>${nombreCompleto}</strong></h5>
                         <p class="card-text"><strong>Especialidad:</strong> ${especialidadNombre}</p>
-                        <p class="card-text small">${medico.descripcion}</p>
+                        <p class="card-text"><strong>Obras Sociales:</strong> ${obrasSocialesNombres}</p>
                     </div>
                 </div>
                 <div class="card-body">
@@ -42,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `;
+
         staffContainer.appendChild(card);
     });
 });
