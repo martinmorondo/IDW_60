@@ -7,15 +7,15 @@
     <title>VITA KIDS - Turnos</title>
     <link rel="icon" href="imagenes/favicon1.ico" type="image/x-icon">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/inicio.css">
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/formularios.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
-<body>
+<body class="pagina-turnos">
 
     <header class="navbar navbar-expand-lg">
         <div class="container-fluid">
@@ -59,7 +59,7 @@
                 <p class="lead text-muted">Completá el siguiente formulario para solicitar tu turno de manera rápida y sencilla.</p>
             </div>
 
-            <div class="card border-0 shadow-sm">
+            <div class="card shadow-sm">
                 <div class="card-body p-4 p-md-5">
                     <form action="" class="row g-4">
                         <div class="col-md-6">
@@ -114,9 +114,31 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="fecha">Fecha Deseada</label>
-                                <input type="date" class="form-control" id="fecha" name="fecha" required> 
+                            <div class="form-floating">
+                                <select class="form-select" id="medico" name="medico" required>
+                                    <option value="" disabled selected>Seleccioná el nombre del profesional...</option>
+                                    <option value="1">Dr. Juan Ignacio Asimov</option>
+                                    <option value="3">Dra. Analía Armendari</option>
+                                    <option value="2">Dr. José María Swabb</option>
+                                    <option value="4">Dra. Luz Ocampo Benítez</option>
+                                    <option value="5">Dr. Hernán DiMaggio</option>
+                                    <option value="6">Lic. Dominique Evrard</option>
+                                    <option value="7">Lic. Ava Aleksandrovich</option>
+                                    <option value="8">Lic. Marcos Leonel Sosa</option>
+                                    <option value="9">Lic. Maite Nicole Arias</option>
+                                    <option value="10">Dr. Federico Pailler</option>
+                                    <option value="11">Lic. Amelie Graciano</option>
+                                </select>
+                                <label for="medico">Profesional médico</label> 
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                              <select class="form-select" id="turnoDisponible" name="turnoDisponible" required>
+                                <option value="" disabled selected>Seleccioná un turno disponible...</option>
+                              </select>
+                              <label for="turnoDisponible">Turnos disponibles</label>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -136,7 +158,7 @@
             </div>
         </div>
     </div>
-</main>
+    </main>
 
     <footer class="footer">
         <div class="footer-content">
@@ -159,7 +181,7 @@
     </footer>    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    
+    <script type="module" src="./js/turnos.js"></script>
 </body>
 
 </html>
