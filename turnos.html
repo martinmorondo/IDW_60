@@ -61,7 +61,7 @@
 
             <div class="card border-0 shadow-sm">
                 <div class="card-body p-4 p-md-5">
-                    <form action="" class="row g-4">
+                    <form action="" class="row g-4" id = "turnosForm">
                         <div class="col-md-6">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre y Apellido" required>
@@ -76,20 +76,20 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-floating">
-                                <select class="form-select" id="obra-social" name="obra-social" required>
+                                <select class="form-select" id="obraSocialSelect" name="obra-social" required>
                                     <option value="" disabled selected>Seleccioná una obra social...</option>
                                     <option value="ninguna">Particular (Sin Obra Social)</option>
-                                    <option value="osde">OSDE</option>
-                                    <option value="swiss">Swiss Medical</option>
-                                    <option value="galeno">Galeno</option>
-                                    <option value="ospe">OSPE</option>
-                                    <option value="osdipp">OSDIPP</option>
-                                    <option value="ostig">OSTIG</option>
-                                    <option value="medife">Medifé</option>
-                                    <option value="accord">Accord Salud</option>
-                                    <option value="sancor">Sancor Salud</option>
-                                    <option value="osecac">OSECAC</option>
-                                    <option value="omint">OMINT</option>
+                                    <option value="101">OSDE (35%)</option>
+                                    <option value="103">Swiss Medical (40%)</option>
+                                    <option value="106">Galeno (30%)</option>
+                                    <option value="102">OSPE (20%)</option>
+                                    <option value="108">OSDIPP (10%)</option>
+                                    <option value="109">OSTIG (15%)</option>
+                                    <option value="104">Medifé (25%)</option>
+                                    <option value="112">Accord Salud (10%)</option>
+                                    <option value="111">Sancor Salud (20%)</option>
+                                    <option value="107">OSECAC (15%)</option>
+                                    <option value="110">OMINT (35%)</option>
                                 </select>
                                 <label for="obra-social">Obra Social / Prepaga</label>
                             </div>
@@ -99,26 +99,37 @@
                             <div class="form-floating">
                                 <select class="form-select" id="especialidad" name="especialidad" required>
                                     <option value="" disabled selected>Seleccioná una especialidad...</option>
-                                    <option value="pediatria">Pediatría general</option>
-                                    <option value="cardiologia">Cardiología Pediátrica</option>
-                                    <option value="neurologia">Neurología Pediátrica</option>
-                                    <option value="psicologia">Psicología infantil</option>
-                                    <option value="psicopedagogia">Psicopedagogía</option>
-                                    <option value="fonoaudiologia">Fonoaudiología</option>
-                                    <option value="oftalmologia">Oftalmología</option>
-                                    <option value="fisioterapia">Fisioterapia infantil</option>
-                                    <option value="odontopediatria">Odontopediatría</option>
-                                    <option value="nutricion">Nutrición infantil</option>
+                                    <option value="1">Pediatría general</option>
+                                    <option value="3">Cardiología Pediátrica</option>
+                                    <option value="2">Neurología Pediátrica</option>
+                                    <option value="4">Psicología infantil</option>
+                                    <option value="5">Psicopedagogía</option>
+                                    <option value="6">Fonoaudiología</option>
+                                    <option value="7">Oftalmología</option>
+                                    <option value="8">Fisioterapia infantil</option>
+                                    <option value="10">Odontopediatría</option>
+                                    <option value="9">Nutrición infantil</option>
                                 </select>
                                 <label for="especialidad">Especialidad</label> 
                             </div>
+                            </div>
+
+                            <div class="col-md-6">
+                            <div class="form-floating">
+                                <select class="form-select" id="medicoSelect" name="medico" required disabled>
+                                    <option value="" disabled selected>Seleccioná un médico...</option>
+                                </select>
+                                <label for="medicoSelect">Médico</label> 
+                            </div>
                         </div>
+                            
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="fecha">Fecha Deseada</label>
                                 <input type="date" class="form-control" id="fecha" name="fecha" required> 
                             </div>
                         </div>
+                        
                         <div class="col-md-12">
                             <div class="form-floating">
                                 <textarea class="form-control" id="motivo" name="motivo" placeholder="Motivo de la consulta" style="height: 100px;"></textarea>
@@ -159,6 +170,7 @@
     </footer>    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script type="module" src="./js/reservas.js"></script>
     
 </body>
 

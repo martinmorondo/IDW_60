@@ -39,26 +39,44 @@ function mostrarAlerta(mensaje, tipo) {
 // Manejo del formulario
 form.addEventListener("submit", function(e){
   e.preventDefault();
-  const usuario = document.getElementById("username").value.trim();
-  const contrasena = passwordInput.value.trim();
+  const username = document.getElementById("username").value.trim();
+  const password = passwordInput.value.trim();
 
-  const userValido = usuarios.find(u => u.usuario === usuario && u.clave === contrasena);
+  // 1. URL de la API de DummyJSON para login
+  const loginUrl = 'https://dummyjson.com/auth/login';
 
-  if(userValido){
-    // Guardar sesión en sessionStorage
-    sessionStorage.setItem("usuarioActivo", JSON.stringify(userValido));
+  fetch(loginUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      username: username,
+      password: password,
+    })
+  })
+  .then(res => {
+    // Si la respuesta no es OK (ej: 400, 401), lanzamos un error para el catch
+    if (!res.ok) {
+      return res.json().then(err => Promise.reject(err));
+    }
+    return res.json();
+  })
+  .then(data => {
+    // 2. ÉXITO: Guardar el accessToken en sessionStorage
+    sessionStorage.setItem("accessToken", data.token);
+    sessionStorage.setItem("usuarioNombre", data.username);
 
-    // Mostrar alerta de éxito
-    mostrarAlerta(`¡Bienvenido, ${usuario}!`, "success");
+    mostrarAlerta(`¡Bienvenido, ${data.username}!`, "success");
 
     // Redirigir a medicos.html
     setTimeout(() => window.location.href = "medicos.html", 1500);
+  })
+  .catch(error => {
+    // ERROR
+    console.error("Error en login:", error);
+    // Usamos el mensaje de error que viene de la API si está disponible
+    mostrarAlerta(error.message || "Usuario o contraseña incorrectos", "danger");
 
-  } else {
-    // Mostrar alerta de error
-    mostrarAlerta("Usuario o contraseña incorrectos. Redirigiendo a inicio...", "danger");
-
-    // Redirigir a inicio.html
-    setTimeout(() => window.location.href = "inicio.html", 2000);
-  }
-})
+    // Redirigimos a inicio.html (o dejar en el login, según la política)
+    // setTimeout(() => window.location.href = "inicio.html", 2000);
+  })
+});

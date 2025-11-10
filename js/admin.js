@@ -1,32 +1,124 @@
 import medicosIniciales from './datos.js';
 
+// Inicializamos el array de médicos en la RAM (simulando la DB de la API)
+let medicosEnMemoria = medicosIniciales;
+
+const obrasSocialesDetalle = [
+    { id: "101", nombre: "OSDE", porcentaje: 35 },
+    { id: "102", nombre: "OSPE", porcentaje: 20 },
+    { id: "103", nombre: "Swiss Medical", porcentaje: 40 },
+    { id: "104", nombre: "Medifé", porcentaje: 25 },
+    { id: "105", nombre: "Medicus", porcentaje: 30 },
+    { id: "106", nombre: "Galeno", porcentaje: 30 },
+    { id: "107", nombre: "OSECAC", porcentaje: 15 },
+    { id: "108", nombre: "OSDIPP", porcentaje: 10 },
+    { id: "109", nombre: "OSTIG", porcentaje: 15 },
+    { id: "110", nombre: "OMINT", porcentaje: 35 },
+    { id: "111", nombre: "Sancor Salud", porcentaje: 20 },
+    { id: "112", nombre: "Accord Salud", porcentaje: 10 }
+];
+
+// Mapa auxiliar (para renderizar)
+const obrasSocialesMap = obrasSocialesDetalle.reduce((acc, os) => {
+    acc[os.id] = { nombre: os.nombre, porcentaje: os.porcentaje }; // Guardamos nombre y porcentaje
+    return acc;
+}, {});
+
 // --- INICIALIZACIÓN DE TOM-SELECT ---
 // Obtenemos las instancias de TomSelect para manipularlas luego
 const tomSelectEspecialidad = new TomSelect("#especialidadId", { maxItems: 1 });
 const tomSelectObrasSociales = new TomSelect("#obrasSocialesId", { maxItems: null, plugins: ['remove_button'] });
 
-// --- GESTIÓN DEL LOCALSTORAGE ---
-const inicializarLocalStorage = () => {
-    if (!localStorage.getItem('medicos')) {
-        localStorage.setItem('medicos', JSON.stringify(medicosIniciales));
+// -- Lógica de Simulación de API (Fetch API) ---
+
+// Función para mostrar mensajes
+const mostrarMensaje = (texto, tipo = 'success') => {
+    const alerta = document.createElement('div');
+    alerta.className = `alert alert-${tipo}`;
+    alerta.textContent = texto;
+    document.getElementById('mensajes').appendChild(alerta);
+    setTimeout(() => alerta.remove(), 3000);
+};
+
+// SIMULACIÓN GET - Obtiene médicos de la RAM y simula la llamada
+const getMedicos = async () => {
+    try {
+        // Simulación de Llamada GET real
+        
+
+        // Retornamos el array en memoria (datos reales de la simulación)
+        return medicosEnMemoria;
+
+    } catch (error) {
+        console.error("Fallo la simulación GET, usando datos locales:", error);
+        return medicosEnMemoria;
     }
 };
 
-const getMedicos = () => JSON.parse(localStorage.getItem('medicos')) || [];
-const guardarMedicos = (medicos) => localStorage.setItem('medicos', JSON.stringify(medicos));
+// SIMULACIÓN POST - Agrega médico a la RAM y simula POST a la API
+const agregarMedicoSimulado = async (nuevoMedico) => {
+    try {
+        // Simulación de Llamada POST real
+        
+        // Agregamos en la RAM 
+        medicosEnMemoria.push(nuevoMedico);
 
-// --- RENDERIZADO DE LA TABLA ---
+        return true;
+    } catch (error) {
+        console.error("Fallo en la simulación POST:", error);
+        return false;
+    }
+};
+
+// Simulación PUT - Actualiza médico en la RAM y simula PUT a la API
+const actualizarMedicoSimulado = async (medicoActualizado) => {
+    try {
+       
+        
+        // Actualizamos en la RAM
+        const medicoIndex = medicosEnMemoria.findIndex(m => m.id === medicoActualizado.id);
+        if (medicoIndex > -1) {
+            medicosEnMemoria[medicoIndex] = medicoActualizado;
+        }
+        
+        return true;
+    } catch (error) {
+        console.error("Fallo la simulación PUT:", error);
+        return false;
+    }
+};
+
+// SIMULACIÓN DELETE - Elimina médico de la RAM y simula DELETE a la API
+window.eliminarMedico = async (id) => {
+    if (confirm('¿Estás seguro de que deseas eliminar a este médico?')) {
+        try {           
+            medicosEnMemoria = medicosEnMemoria.filter(m => m.id !== id);
+            mostrarMensaje('✔️ Médico eliminado con éxito!', 'success');
+            renderizarTabla();
+        } catch (error) {
+            console.error("Fallo en la simulación DELETE:", error);
+            mostrarMensaje('❌ Error al intentar eliminar el médico.', 'danger');
+        }
+    }
+};
+
+// --- RENDERIZADO Y LÓGICA DE FORMULARIO  ---
 const tablaMedicosBody = document.getElementById('tabla-medicos-body');
 
-// Función para obtener el nombre de la especialidad a partir de su ID
 const getNombreEspecialidad = (id) => {
     const especialidadOption = document.querySelector(`#especialidadId option[value="${id}"]`);
     return especialidadOption ? especialidadOption.textContent : 'No definida';
 };
 
-const renderizarTabla = () => {
+// Función para obtener el nombre de la Obra Social (usando el mapa auxiliar)
+const getNombreObraSocial = (id) => {
+    const os = obrasSocialesMap[id];
+    return os ? `${os.nombre} (${os.porcentaje}%)` : `ID ${id}`;
+};
+
+const renderizarTabla = async () => {
     tablaMedicosBody.innerHTML = '';
-    const medicos = getMedicos();
+    const medicos = await getMedicos(); 
 
     if (medicos.length === 0) {
         tablaMedicosBody.innerHTML = `<tr><td colspan="9" class="text-center">No hay médicos registrados.</td></tr>`;
@@ -45,8 +137,9 @@ const renderizarTabla = () => {
             <td>${
                 medico.obrasSociales.length > 0
                     ? medico.obrasSociales.map(osId => {
-                        const option = document.querySelector(`#obrasSocialesId option[value="${osId}"]`);
-                        const nombre = option ? option.textContent : `ID ${osId}`;
+                        // Usamos el mapa de Obras Sociales local para mostrar nombre y %
+                        const osData = obrasSocialesMap[osId];
+                        const nombre = osData ? `${osData.nombre} (${osData.porcentaje}%)` : `ID ${osId}`;
                         return `<span class="d-block text-secondary fw-semibold">${nombre}</span>`;
                     }).join('')
                     : '<span class="text-muted">Sin obras sociales</span>'
@@ -61,15 +154,6 @@ const renderizarTabla = () => {
         `;
         tablaMedicosBody.appendChild(tr);
     });
-};
-
-// --- FUNCIÓN PARA MOSTRAR MENSAJES ---
-const mostrarMensaje = (texto, tipo = 'success') => {
-    const alerta = document.createElement('div');
-    alerta.className = `alert alert-${tipo}`;
-    alerta.textContent = texto;
-    document.getElementById('mensajes').appendChild(alerta);
-    setTimeout(() => alerta.remove(), 3000);
 };
 
 function generarIdNumerico(medicos) {
@@ -87,7 +171,7 @@ function generarIdNumerico(medicos) {
 // --- LÓGICA DEL FORMULARIO (CRUD) ---
 const medicoForm = document.getElementById('medicoForm');
 
-medicoForm.addEventListener('submit', (e) => {
+medicoForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     let id = document.getElementById('id').value; // Permitimos que el ID pueda ser nulo
@@ -96,18 +180,13 @@ medicoForm.addEventListener('submit', (e) => {
     const apellidos = document.getElementById('apellidos').value;
     const nombres = document.getElementById('nombres').value;
     const descripcion = document.getElementById('descripcion').value;
-    const obrasSociales = Array.isArray(tomSelectObrasSociales.getValue()) 
-    ? tomSelectObrasSociales.getValue() 
+    const obrasSocialesRaw = tomSelectObrasSociales.getValue();
+    const obrasSociales = Array.isArray(obrasSocialesRaw) 
+    ? obrasSocialesRaw.map(String) // Aseguramos que sean strings (como en el objeto)
     : [];
     const valorConsulta = parseFloat(document.getElementById('valorConsulta').value) || 0;
     const fotografia = document.getElementById('fotografia').value;
-    const medicos = getMedicos();
-
-    // // Validación extra: campos obligatorios
-    // if (!matricula.trim() || !nombres.trim() || !especialidadId) {
-    //     mostrarMensaje('Por favor, completá matrícula, nombre y especialidad.', 'danger');
-    //     return;
-    // }
+    const medicos = await getMedicos(); // <-- Obtenemos la lista actual
 
     if (id && medicos.some(m => m.id === id)) {
         // --- MODO EDICIÓN ---
@@ -118,39 +197,44 @@ medicoForm.addEventListener('submit', (e) => {
             return;
         }
 
-        const medicoIndex = medicos.findIndex(m => m.id === id);
-        if (medicoIndex > -1) {
-            medicos[medicoIndex] = { id, matricula, especialidadId, apellidos, nombres, descripcion, obrasSociales, valorConsulta, fotografia };
-        }
-        // localStorage.setItem('medicos', JSON.stringify(medicosIniciales));
-        mostrarMensaje('✔️Médico actualizado con éxito!', 'success');
+        const medicoActualizado = { id, matricula, especialidadId, apellidos, nombres, descripcion, obrasSociales, valorConsulta, fotografia};
+        
+        const exito = await actualizarMedicoSimulado(medicoActualizado); // Usamos Simulación PUT
 
+        if (exito) {
+            mostrarMensaje('✔️ Médico actualizado con éxito!', 'success');
+        } else {
+            mostrarMensaje('❌ Error al actualizar el médico (Simulación).', 'danger');
+        }
     } else {
         // --- MODO CREACIÓN ---
         const matriculaDuplicada = medicos.some(m => m.matricula === matricula);
 
-        if (!id && matriculaDuplicada) {
+        if (matriculaDuplicada) {
             mostrarMensaje('⚠️ Ya existe un médico con esa matrícula.', 'warning');
-            return; // Evita que se cree el médico
+            return;
         }
 
         const nuevoMedico = {
-            id: generarIdNumerico(medicos), // Generamos ID correlativo
+            id: generarIdNumerico(medicos),
             matricula, especialidadId, apellidos, nombres,
             descripcion, obrasSociales, valorConsulta, fotografia
         };
-        
-        medicos.push(nuevoMedico);
-        // localStorage.setItem('medicos', JSON.stringify(medicosIniciales));
-        mostrarMensaje('✔️ Médico agregado con éxito!', 'success');
+
+        const exito = await agregarMedicoSimulado(nuevoMedico); // <-- Usamos Simulación POST
+
+        if (exito) {
+            mostrarMensaje('✔️ Médico agregado con éxito!', 'success');
+        } else {
+            mostrarMensaje('❌ Error al agregar el médico (Simulación).', 'danger');
+        }
     }
 
-    guardarMedicos(medicos);
     resetFormulario();
     renderizarTabla();
-});
+    });
 
-const resetFormulario = () => {
+    const resetFormulario = () => {
     medicoForm.reset();
     document.getElementById('id').value = '';
     document.getElementById('id').readOnly = true;
@@ -165,8 +249,8 @@ const resetFormulario = () => {
 }
 
 // Hacemos las funciones globales para poder llamarlas desde el HTML
-window.cargarMedicoEnFormulario = (id) => {
-    const medicos = getMedicos();
+window.cargarMedicoEnFormulario = async (id) => {
+    const medicos = await getMedicos();
     const medico = medicos.find(m => m.id === id);
 
     if (medico) {
@@ -197,18 +281,9 @@ window.cargarMedicoEnFormulario = (id) => {
     }
 };
 
-window.eliminarMedico = (id) => {
-    if (confirm('¿Estás seguro de que deseas eliminar a este médico?')) {
-        let medicos = getMedicos();
-        medicos = medicos.filter(m => m.id !== id);
-        guardarMedicos(medicos);
-        renderizarTabla();
-    }
-};
-
 // --- INICIALIZACIÓN ---
 document.addEventListener('DOMContentLoaded', () => {
-    inicializarLocalStorage();
+    // inicializarLocalStorage();
     renderizarTabla();
 });
 
