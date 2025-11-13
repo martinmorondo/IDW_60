@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VITA KIDS - Especialidades</title>
+    <link rel="icon" href="imagenes/favicon1.ico" type="image/x-icon">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/especialidades.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+<!-- HEADER / NAVBAR -->
+    <header class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            
+            <!-- Logo + Título -->
+            <a href="inicio.html" class="logo d-flex flex-column align-items-center text-center text-decoration-none">
+                <img src="imagenes/logo_sin_fondo.png" alt="Logo de la página">
+                <h1>Centro Integral de Salud Infantil</h1>
+            </a>
+    
+            <!-- Botón hamburguesa -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav" aria-controls="menuNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Menú de navegación -->
+            <nav class="collapse navbar-collapse" id="menuNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="inicio.html" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="institucional.html" class="nav-link">Institucional</a></li>
+                    <li class="nav-item"><a href="especialidades.html" class="nav-link active">Especialidades</a></li>
+                    <li class="nav-item"><a href="obras-sociales.html" class="nav-link">Obras Sociales</a></li>
+                    <li class="nav-item"><a href="contacto.html" class="nav-link">Contacto</a></li>
+                    <li class="nav-item"><a href="turnos.html" class="nav-link">Solicitar Turno</a></li>
+                    <li class="nav-item">
+                      <a href="login.html" class="nav-link">
+                        <i class="fas fa-user-circle fa-lg"></i> <span class="ms-1">LogIn</span>
+                      </a>
+                  </li> 
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <main>
+    <section>
+        <div class="banner-carousel mx-auto">
+          <div id="carouselBasicExample" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <!-- Indicators -->
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselBasicExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselBasicExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselBasicExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+      
+            <!-- Inner -->
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="imagenes/slide1.png" class="d-block w-100" alt="slide1">
+              </div>
+              <div class="carousel-item">
+                <img src="imagenes/slide2.png" class="d-block w-100" alt="slide2">
+              </div>
+              <div class="carousel-item">
+                <img src="imagenes/slidem3.png" class="d-block w-100" alt="slidem3">
+              </div>
+            </div>
+      
+            <!-- Controls-->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselBasicExample" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselBasicExample" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+    
+      <section class="fondo-especialidades">
+        <div class="container py-5">
+          <h2 class="text-center mb-4">Nuestro Equipo de Profesionales</h2>
+          <div class="row g-4" id="staff-medico-container">
+           
+          </div>
+        </div>
+      </section>
+
+      <!-- Preguntas Frecuentes -->
+      <section class="faq">
+        <h2>Preguntas Frecuentes</h2>
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-header">
+              ¿Trabajan con obras sociales?
+              <span class="arrow">&#9656;</span> <!-- flecha -->
+            </button>
+            <div class="accordion-content">
+              <p>Sí, trabajamos con varias obras sociales y también atención particular. Consultá la cobertura de cada especialista en su perfil.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header">
+              ¿Cómo solicito un turno?
+              <span class="arrow">&#9656;</span> <!-- flecha -->
+            </button>
+            <div class="accordion-content">
+              <p>Podés solicitarlo a través de nuestra página de contacto o llamando a la recepción de Vita Kids.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header">
+              ¿Atienden urgencias?
+              <span class="arrow">&#9656;</span> <!-- flecha -->
+            </button>
+            <div class="accordion-content">
+              <p>No contamos con guardia permanente. Para emergencias, dirigite a la guardia pediátrica más cercana. Para consultas rápidas, podés pedir turnos disponibles en el día.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <img src="imagenes/logo_sin_fondo.png" alt="Logo Vita Kids" class="logo-footer">
+                <h3><strong>Centro Integral de Salud Infantil 💚</strong></h3>
+                <p>Av. San Martín 123, CABA, Argentina</p>
+            </div>
+            <div class="iconos-contacto">
+                <a href="mailto:consultas@vitakids.com" aria-label="Correo electrónico"><i class="fas fa-envelope"></i></a> 
+                <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+      
+        <div>
+          <p>&copy; 2025 Vita Kids S.A - Todos los derechos reservados.</p>
+        </div>
+    </footer>    
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Script acordeón FAQ
+      const headers = document.querySelectorAll(".accordion-header");
+      headers.forEach(header => {
+        header.addEventListener("click", () => {
+          const item = header.parentElement;
+          item.classList.toggle("active");
+        });
+      });
+    </script>
+    <script src="js/datos.js"></script>
+    <script type="module" src="js/staff.js"></script>
+</body>
+</html>
