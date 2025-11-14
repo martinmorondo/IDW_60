@@ -9,47 +9,90 @@ El objetivo fue construir una aplicación web client-side completa que simula un
 ---
 
 ## Funcionalidades Destacadas
-Este proyecto se divide en dos grandes áreas: el panel de administración sincronizado y el portal dinámico del paciente.
+
+El sistema se divide en dos grandes áreas:
+
+- **Panel de Administración (Sincronizado)**
+- **Portal del Paciente (Dinámico)**
+
+---
 
 ## Panel de Administración (Sincronizado)
-Es el núcleo del sistema. Permite la gestión completa de los datos de la clínica, que se persisten en LocalStorage.
-Autenticación de Rutas: Protección de todas las vistas de administrador. El acceso se deniega si no existe un token válido en sessionStorage.
-CRUDs Completos: Módulos independientes para Crear, Leer, Actualizar y Eliminar (CRUD) Médicos, Especialidades y Obras Sociales.
-Base de Datos en LocalStorage: Toda la aplicación comparte una única fuente de verdad (LocalStorage). Los datos se cargan inicialmente desde archivos locales (datos.js, datos-os.js) y luego se gestionan 100% en LocalStorage.
-Sincronización en Tiempo Real: (Decisión de diseño clave) El uso de window.addEventListener('storage') permite que los cambios realizados en un panel (ej: eliminar una Obra Social) se reflejen automáticamente y en tiempo real en todas las demás pestañas abiertas (ej: la tabla de Médicos, la vista de Reservas y el catálogo público).
+
+Es el núcleo del sistema. Permite la gestión completa de los datos de la clínica, que se persisten en **LocalStorage**.
+
+### Funcionalidades principales:
+
+- **Autenticación de rutas**  
+  Todas las vistas del administrador están protegidas. El acceso se deniega si no existe un token válido en `sessionStorage`.
+
+- **CRUDs completos**  
+  Módulos independientes para:
+  - Crear, Leer, Actualizar y Eliminar (**CRUD**) Médicos  
+  - Crear, Leer, Actualizar y Eliminar Especialidades  
+  - Crear, Leer, Actualizar y Eliminar Obras Sociales
+
+- **Base de datos centralizada en LocalStorage**  
+  Toda la aplicación comparte una única fuente de verdad (**LocalStorage**).  
+  Los datos se cargan inicialmente desde archivos locales (`datos.js`, `datos-os.js`) y luego se gestionan 100% en LocalStorage.
+
+- **Sincronización en tiempo real**  
+  Gracias a `window.addEventListener('storage')`, los cambios realizados en una pestaña (por ejemplo, eliminar una Obra Social) se reflejan automáticamente y en tiempo real en:
+  - La tabla de Médicos  
+  - La vista de Reservas  
+  - El catálogo público
+
+---
 
 ## Portal del Paciente (Dinámico)
+
 Es la cara pública del sitio, construida para ser 100% dinámica.
-Catálogo Dinámico: Las cards de especialidades.html y las listas de obras-sociales.html se generan leyendo LocalStorage. Si un administrador elimina un médico, éste desaparece del catálogo público al instante.
-Flujo de Turnos Completo:
-El Admin crea "Turnos Disponibles" (admin-turnos.html).
-El Paciente ve un formulario de filtros en cascada (turnos.html) que carga dinámicamente las especialidades y médicos desde LocalStorage.
-Al seleccionar un médico, se filtran y muestran solo sus turnos disponibles.
-Al reservar, el turno se actualiza en LocalStorage a "Confirmado" y se le asignan los datos del paciente (Nombre, DNI).
-El Admin ve la reserva confirmada en el panel admin-reservas.html.
-Formulario de Contacto Validado: La página contacto.html utiliza contacto.js para validar los campos y simular un envío exitoso (setTimeout), mejorando la experiencia de usuario.
+
+### Características principales:
+
+- **Catálogo dinámico**  
+  Las cards de `especialidades.html` y las listas de `obras-sociales.html` se generan leyendo LocalStorage.  
+  Si un administrador elimina un médico, este desaparece del catálogo público al instante.
+
+- **Flujo completo de turnos**
+  1. El administrador crea "Turnos Disponibles" desde `admin-turnos.html`.  
+  2. El paciente utiliza un formulario de filtros en cascada (`turnos.html`) que carga dinámicamente las especialidades y médicos desde LocalStorage.  
+  3. Al seleccionar un médico, se filtran y muestran solo sus turnos disponibles.  
+  4. Al reservar, el turno se actualiza a **Confirmado** y se le asignan los datos del paciente (Nombre, DNI).  
+  5. El administrador ve la reserva confirmada en `admin-reservas.html`.
+
+- **Formulario de contacto validado**  
+  La página `contacto.html` utiliza `contacto.js` para validar los campos y simular un envío exitoso mediante `setTimeout`, mejorando la experiencia del usuario.
 
 ---
 
 ## Tecnologías Utilizadas
-HTML5: Estructura semántica del sitio.
-CSS3: Estilos personalizados, animaciones y diseño responsivo (Flexbox, Grid).
-JavaScript (ES6+): Programación de toda la lógica, manipulación del DOM y modularización (import/export).
-LocalStorage API: Utilizada como base de datos principal client-side para persistir todos los datos de la aplicación.
-Bootstrap 5: Framework principal para el layout, componentes (modales, tablas, formularios) y diseño responsivo.
-Fetch API: Utilizada para consumir la API REST pública de autenticación.
-Git y GitHub: Control de versiones y trabajo colaborativo.
+
+- **HTML5** – Estructura semántica del sitio  
+- **CSS3** – Estilos personalizados, animaciones y diseño responsivo (Flexbox, Grid)  
+- **JavaScript (ES6+)** – Lógica completa, manipulación del DOM y modularización (import/export)  
+- **LocalStorage API** – Base de datos principal client-side  
+- **Bootstrap 5** – Layout, componentes (modales, tablas, formularios) y diseño responsivo  
+- **Fetch API** – Consumo de API REST pública de autenticación  
+- **Git y GitHub** – Control de versiones y trabajo colaborativo
+
 ---
 
 ## Cómo Ejecutar el Proyecto
-1- Clonar este repositorio:
-git clone https://github.com/martinmorondo/IDW_60
-2- Navegar a la carpeta del proyecto.
-3- Importante: Usar un Servidor Local Este proyecto utiliza Módulos de JavaScript (import/export), por lo que no funcionará si se abre el index.html directamente (file:///).
-Se recomienda usar un servidor local. La forma más fácil es con la extensión Live Server de Visual Studio Code:
-Hacer clic derecho sobre index.html (o la página que quieras ver).
-Seleccionar Open with Live Server.
-4- Navegar a login.html para iniciar sesión y acceder a los paneles de administración.
+
+1. **Clonar el repositorio:**  
+   git clone https://github.com/martinmorondo/IDW_60
+   
+2. Navegar a la carpeta del proyecto.
+
+3. Importante: usar un servidor local
+Este proyecto utiliza módulos de JavaScript (import/export), por lo que no funcionará si se abre index.html directamente con file:///.
+La forma más fácil de ejecutarlo es con la extensión Live Server de Visual Studio Code:
+Hacer clic derecho sobre index.html (o cualquier página que quieras abrir)
+Seleccionar Open with Live Server
+
+4. Ingresar al panel de administración
+Abrir login.html para iniciar sesión y acceder a los paneles.
 
 ## Integrantes del grupo
 - Gabriela de los Ángeles Camacho  
