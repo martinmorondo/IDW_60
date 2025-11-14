@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/"
+  to = "/inicio.html"
+  status = 200  # Indica que es una reescritura interna y mantiene la URL visible 
