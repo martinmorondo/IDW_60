@@ -1,225 +1,183 @@
-// 1. IMPORTAR DATOS 
-import medicosIniciales from './datos.js';
+import medicosIniciales from './datos.js'; 
+import { especialidadesDetalle } from './utils.js'; 
+import { obrasSocialesInicialesArray } from './datos-os.js'; 
 
-// 2 DEFINICIÓN DE ESPECIALIDADES
- export  const especialidadesDetalle = [
-    { id: "1", nombre: "Pediatría general" },
-    { id: "2", nombre: "Neurología Pediátrica" },
-    { id: "3", nombre: "Cardiología Pediátrica" },
-    { id: "4", nombre: "Oftalmología Pediátrica" },
-    { id: "5", nombre: "Psicología Infantil" },
-    { id: "6", nombre: "Psicopedagogía" },
-    { id: "7", nombre: "Fisioterapia Infantil" },
-    { id: "8", nombre: "Fonoaudiología" },
-    { id: "9", nombre: "Odontopediatría" },
-    { id: "10", nombre: "Nutrición Infantil" },
-    { id: "11", nombre: "Análisis Clínicos" },
-];
+// 2. MAPAS DE BÚSQUEDA (Para obtener nombres a partir de IDs)
+const medicosMap = medicosIniciales.reduce((acc, med) => {
+    acc[med.id] = med; // Guardamos el objeto completo
+    return acc;
+}, {});
 
 const especialidadesMap = especialidadesDetalle.reduce((acc, esp) => {
     acc[esp.id] = esp.nombre;
     return acc;
 }, {});
 
-
-// 2.1 DEFINICIÓN DE OBRAS SOCIALES (Necesaria para el cálculo del porcentaje)
-const obrasSocialesDetalle = [
-    { id: "101", nombre: "OSDE", porcentaje: 35 },
-    { id: "102", nombre: "OSPE", porcentaje: 20 },
-    { id: "103", nombre: "Swiss Medical", porcentaje: 40 },
-    { id: "104", nombre: "Medifé", porcentaje: 25 },
-    { id: "105", nombre: "Medicus", porcentaje: 30 },
-    { id: "106", nombre: "Galeno", porcentaje: 30 },
-    { id: "107", nombre: "OSECAC", porcentaje: 15 },
-    { id: "108", nombre: "OSDIPP", porcentaje: 10 },
-    { id: "109", nombre: "OSTIG", porcentaje: 15 },
-    { id: "110", nombre: "OMINT", porcentaje: 35 },
-    { id: "111", nombre: "Sancor Salud", porcentaje: 20 },
-    { id: "112", nombre: "Accord Salud", porcentaje: 10 },
-    
-];
-
-// 3. FUNCIÓN DE CÁLCULOS
-/**
- * Calcula el valor final a pagar por el turno aplicando el descuento de la OS.
- * @param {number} valorConsulta - El valor original de la consulta del médico.
- * @param {string} idObraSocial - El ID de la Obra Social seleccionada.
- * @returns {number} El valor final de la consulta con el descuento aplicado.
- */
+// 3. FUNCIÓN DE CÁLCULO 
 const calcularValorTurno = (valorConsulta, idObraSocial) => {
-    const osSeleccionada = obrasSocialesDetalle.find(os => String(os.id) === String(idObraSocial));
-
-    // Validaciones
-    if (!osSeleccionada || osSeleccionada.id === 'ninguna' || typeof osSeleccionada.porcentaje !== 'number') {
+    const osSeleccionada = obrasSocialesInicialesArray.find(os => String(os.id) === String(idObraSocial));
+    if (!osSeleccionada || idObraSocial === 'ninguna' || typeof osSeleccionada.porcentaje !== 'number') {
         return valorConsulta;
     }
-
-    if (!osSeleccionada || idObraSocial === 'ninguna') {
-    return valorConsulta;
-}
-
-    // Cálculo del descuento
     const descuento = osSeleccionada.porcentaje / 100;
     const valorFinal = valorConsulta * (1 - descuento);
-
-    // Redondeamos y devolvemos el valor final
     return parseFloat(valorFinal.toFixed(2));
 };
 
 
-
-// 4. EJEMPLO DE LÓGICA DE PROCESAMIENTO DE RESERVA (Simulación de guardar en una 'DB' de Reservas)
 document.addEventListener('DOMContentLoaded', () => {
-    const turnosForm = document.getElementById('turnosForm'); 
-    const obraSocialSelect = document.getElementById('obraSocialSelect');
-    const especialidadSelect = document.getElementById('especialidad');
-    const medicoSelect = document.getElementById('medicoSelect');
 
-    let valorTurnoFinalCalculado = 0; // Variable global para el valor final
-
-   const cargarObrasSociales = () => {
-    obraSocialSelect.innerHTML = `
-        <option value="" disabled selected>Seleccioná una obra social...</option>
-        <option value="ninguna">Particular (Sin Obra Social)</option>
-    `;
-
-    obrasSocialesDetalle.forEach(os => {
-        const option = document.createElement('option');
-        option.value = os.id;
-        option.textContent = `${os.nombre} (${os.porcentaje || 0}%)`;
-        obraSocialSelect.appendChild(option);
-    });
-};
-
-    /** Llena el select de Especialidades basándose en la OS seleccionada. */
-    const llenarEspecialidades = (osId) => {
-        especialidadSelect.innerHTML = '<option value="" disabled selected>Seleccioná una especialidad...</option>';
-        
-        // 1. Filtrar Médicos que aceptan la OS
-        const medicosCubiertos = medicosIniciales.filter(medico => {
-            // Verifica si acepta la OS, o si se seleccionó 'ninguna'
-            return osId === 'ninguna' || (medico.obrasSociales && medico.obrasSociales.includes(osId));
-        });
-
-        // 2. Obtener IDs de especialidades únicas
-        const especialidadesCubiertasIDs = [...new Set(medicosCubiertos.map(m => m.especialidadId))];
-
-        // 3. Llenar el Select
-        const especialidadesFiltradas = especialidadesDetalle.filter(esp => especialidadesCubiertasIDs.includes(esp.id));
-        
-        especialidadesFiltradas.forEach(esp => {
-            const option = document.createElement('option');
-            option.value = esp.id;
-            option.textContent = esp.nombre;
-            especialidadSelect.appendChild(option);
-        });
-
-        especialidadSelect.disabled = especialidadesFiltradas.length === 0;
-        // Reiniciar médico
-        medicoSelect.innerHTML = '<option value="" disabled selected>Seleccioná un médico...</option>';
-        medicoSelect.disabled = true;
-    };
-
-    /** Llena el select de Médicos basándose en la Especialidad y OS. */
-    const llenarMedicos = (especialidadId, osId) => {
-        medicoSelect.innerHTML = '<option value="" disabled selected>Seleccioná un médico...</option>';
-        
-        // 1. Filtrar Médicos por Especialidad Y Obra Social
-        const medicosFiltrados = medicosIniciales.filter(medico => {
-            const cubreEspecialidad = medico.especialidadId === especialidadId;
-            const aceptaOS = osId === 'ninguna' || (medico.obrasSociales && medico.obrasSociales.includes(osId));
-            return cubreEspecialidad && aceptaOS;
-        });
-
-        // 2. Llenar el Select y calcular el valor inicial
-        medicosFiltrados.forEach(medico => {
-            const valorCalculado = calcularValorTurno(medico.valorConsulta, osId);
-            const option = document.createElement('option');
-            option.value = medico.id;
-            // Mostramos el valor final estimado en el select
-            option.textContent = `${medico.nombres} ${medico.apellidos} ($${valorCalculado.toFixed(2)})`;
-            medicoSelect.appendChild(option);
-        });
-        
-        medicoSelect.disabled = medicosFiltrados.length === 0;
-    };
+    // 4. CONSTANTES DEL DOM
+    const container = document.getElementById('turnos-disponibles-container');
+    const reservaModal = new bootstrap.Modal(document.getElementById('reservaModal'));
+    const formReserva = document.getElementById('formReserva');
+    const pacienteOSSelect = document.getElementById('pacienteOS');
+    const valorFinalReservaDisplay = document.getElementById('valorFinalReserva');
     
-    // ----------------------------------------------------
-    // 7. EVENT LISTENERS PARA EL FILTRADO
-    // ----------------------------------------------------
+    let turnoSeleccionado = null; // Guardará el turno que se está reservando
 
-    // Evento 1: Obra Social cambia -> Cargar Especialidades
-    obraSocialSelect.addEventListener('change', () => {
-        const osId = obraSocialSelect.value;
-        llenarEspecialidades(osId);
-    });
+    // 5. FUNCIÓN DE RENDERIZADO
+    const renderizarTurnosDisponibles = () => {
+        container.innerHTML = '';
+        
+        // Obtenemos TODOS los turnos creados por el Admin
+        const todosLosTurnos = JSON.parse(localStorage.getItem('turnos')) || [];
+        
+        // Filtramos solo los disponibles
+        const turnosDisponibles = todosLosTurnos.filter(t => t.disponible === true); // <-- Busca 'disponible: true'
+        
+        if (turnosDisponibles.length === 0) {
+            container.innerHTML = '<tr><td colspan="5" class="text-center text-muted">No hay turnos disponibles por el momento.</td></tr>';
+            return;
+        }
 
-    // Evento 2: Especialidad cambia -> Cargar Médicos
-    especialidadSelect.addEventListener('change', () => {
-        const especialidadId = especialidadSelect.value;
-        const osId = obraSocialSelect.value; 
-        llenarMedicos(especialidadId, osId);
-    });
+        turnosDisponibles.forEach(turno => {
+            const medico = medicosMap[turno.medicoId];
+            if (!medico) return; // Si el médico no existe, no mostrar el turno
 
-    // Evento 3: Médico cambia -> Almacenar el valor final para el submit
-    medicoSelect.addEventListener('change', () => {
-        const idMedico = medicoSelect.value;
-        const idObraSocial = obraSocialSelect.value;
-        const medico = medicosIniciales.find(m => m.id === idMedico);
+            const especialidadNombre = especialidadesMap[medico.especialidadId] || 'N/A';
+            
+            
+            // Formateamos la fecha para que se vea bien
+            const fechaFormateada = new Date(turno.fechaHora).toLocaleString('es-AR', {
+                dateStyle: 'short',
+                timeStyle: 'short',
+                hour12: false
+            });
+            
+            const tr = document.createElement('tr');
+            
+            tr.innerHTML = `
+                <td>${fechaFormateada}</td>
+                <td>${especialidadNombre}</td>
+                <td>${medico.nombres} ${medico.apellidos}</td>
+                <td>$${medico.valorConsulta.toFixed(2)}</td>
+                <td>
+                    <button class="btn btn-success btn-sm btn-reservar" 
+                            data-id="${turno.id}" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#reservaModal">
+                        Reservar
+                    </button>
+                </td>
+            `;
+            container.appendChild(tr);
+        });
+    };
 
-        if (medico) {
-            valorTurnoFinalCalculado = calcularValorTurno(medico.valorConsulta, idObraSocial);
-            console.log(`Valor de consulta final: $${valorTurnoFinalCalculado.toFixed(2)}`);
-            // Opcional: mostrar valor en un div si tienes un elemento para ello (por ejemplo: #valorFinalDisplay)
+    // 6. LLENAR EL SELECT DE OBRAS SOCIALES (EN EL MODAL)
+    const cargarObrasSocialesModal = () => {
+        pacienteOSSelect.innerHTML = '<option value="" disabled selected>Seleccione Obra Social...</option>';
+        pacienteOSSelect.innerHTML += '<option value="ninguna">Particular (Sin Obra Social)</option>';
+        
+        obrasSocialesInicialesArray.forEach(os => {
+            const option = document.createElement('option');
+            option.value = os.id;
+            option.textContent = `${os.nombre} (${os.porcentaje || 0}%)`;
+            pacienteOSSelect.appendChild(option);
+        });
+    };
+
+    // 7. MANEJO DE EVENTOS
+    
+    // Evento para ABRIR EL MODAL (cuando se hace clic en "Reservar")
+    container.addEventListener('click', (e) => {
+        if (e.target.classList.contains('btn-reservar')) {
+            const turnoId = e.target.dataset.id;
+            const todosLosTurnos = JSON.parse(localStorage.getItem('turnos')) || [];
+            turnoSeleccionado = todosLosTurnos.find(t => t.id === turnoId);
+            
+            if (!turnoSeleccionado) return;
+
+            const medico = medicosMap[turnoSeleccionado.medicoId];
+
+            // Rellenar el modal
+            document.getElementById('turnoIdReserva').value = turnoSeleccionado.id;
+            document.getElementById('reservaMedico').textContent = `${medico.nombres} ${medico.apellidos}`;
+            
+            const fechaFormateadaModal = new Date(turnoSeleccionado.fechaHora).toLocaleString('es-AR', {
+                dateStyle: 'short', timeStyle: 'short', hour12: false
+            });
+            document.getElementById('reservaFecha').textContent = fechaFormateadaModal;
+            
+            // Calcular valor inicial (Particular)
+            const valorInicial = calcularValorTurno(medico.valorConsulta, 'ninguna');
+            valorFinalReservaDisplay.textContent = `Valor final: $${valorInicial.toFixed(2)}`;
         }
     });
-    
-    if (turnosForm) {
-        turnosForm.addEventListener('submit', (e) => {
-            e.preventDefault();
 
-            const idMedico = medicoSelect.value;
-            const idObraSocial = obraSocialSelect.value;
-            const medicoSeleccionado = medicosIniciales.find(m => m.id === idMedico);
+    // Evento para RECALCULAR VALOR al cambiar OS en el modal
+    pacienteOSSelect.addEventListener('change', () => {
+        if (!turnoSeleccionado) return;
+        
+        const medico = medicosMap[turnoSeleccionado.medicoId];
+        const osId = pacienteOSSelect.value;
+        const valorFinal = calcularValorTurno(medico.valorConsulta, osId);
+        
+        valorFinalReservaDisplay.textContent = `Valor final: $${valorFinal.toFixed(2)}`;
+    });
 
-            if (!medicoSeleccionado || !idMedico || !idObraSocial) {
-                alert("Por favor, selecciona Obra Social, Especialidad y Médico.");
-                return;
-            }
+    // Evento para CONFIRMAR LA RESERVA (Submit del Modal)
+    formReserva.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const todosLosTurnos = JSON.parse(localStorage.getItem('turnos')) || [];
+        const turnoId = document.getElementById('turnoIdReserva').value;
+        const index = todosLosTurnos.findIndex(t => t.id === turnoId);
 
-            const valorConsultaMedico = medicoSeleccionado.valorConsulta;
-            
-            // Usamos el valor calculado en el evento change del médico, o lo recalculamos
-            const valorTurnoFinal = valorTurnoFinalCalculado || calcularValorTurno(valorConsultaMedico, idObraSocial);
-            
-            // 💡 CREACIÓN Y PERSISTENCIA DE LA RESERVA
-            const nuevaReserva = {
-                id: Date.now().toString(),
-                paciente: document.getElementById('nombre').value, 
-                dni: document.getElementById('dni').value, 
-                fecha: document.getElementById('fecha').value, 
-                motivo: document.getElementById('motivo').value,
-                medicoId: idMedico,
-                obraSocialId: idObraSocial,
-                valorOriginal: valorConsultaMedico,
-                valorTurnoFinal: valorTurnoFinal, 
-                estado: 'Reservado'
-            };
+        if (index === -1) {
+            alert("Error: El turno ya no está disponible.");
+            return;
+        }
 
-            const turnosGuardados = JSON.parse(localStorage.getItem('turnos')) || [];
-            turnosGuardados.push(nuevaReserva);
-            localStorage.setItem('turnos', JSON.stringify(turnosGuardados));
+        // Datos del paciente
+        const pacienteNombre = document.getElementById('pacienteNombre').value;
+        const pacienteDNI = document.getElementById('pacienteDNI').value;
+        const pacienteOS = document.getElementById('pacienteOS').value;
+        
+        // Recalcular el valor final por seguridad
+        const medico = medicosMap[todosLosTurnos[index].medicoId];
+        const valorFinal = calcularValorTurno(medico.valorConsulta, pacienteOS);
 
-            alert(`Turno reservado con éxito. Valor final a pagar: $${valorTurnoFinal.toFixed(2)}`);
-            turnosForm.reset();
-            // Restablecer selects deshabilitados
-            especialidadSelect.disabled = true;
-            medicoSelect.disabled = true;
-        });
-    }
+        // ACTUALIZAMOS EL TURNO (Convertimos "Turno" en "Reserva")
+        todosLosTurnos[index].paciente = pacienteNombre;
+        todosLosTurnos[index].dni = pacienteDNI;
+        todosLosTurnos[index].obraSocialId = pacienteOS;
+        todosLosTurnos[index].valorTurnoFinal = valorFinal; // Guardamos el valor final
+        todosLosTurnos[index].disponible = false; // <-- El admin entiende esto como "No disponible"
 
-    // 9. INICIALIZACIÓN
-    cargarObrasSociales(); 
-    especialidadSelect.disabled = true;
-    medicoSelect.disabled = true;
+        // Guardar en localStorage
+        localStorage.setItem('turnos', JSON.stringify(todosLosTurnos));
+
+        alert(`¡Reserva confirmada para ${pacienteNombre}!\nValor a pagar: $${valorFinal.toFixed(2)}`);
+        
+        reservaModal.hide();
+        renderizarTurnosDisponibles(); // Actualizar la lista (el turno reservado desaparecerá)
+    });
+
+
+    // 8. INICIALIZACIÓN
+    renderizarTurnosDisponibles();
+    cargarObrasSocialesModal();
 });
+
