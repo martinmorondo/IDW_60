@@ -1,4 +1,4 @@
-import { obrasSocialesInicialesArray } from './datos-os.js';
+import { obrasSocialesIniciales as obrasSocialesInicialesArray } from './datos1.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
