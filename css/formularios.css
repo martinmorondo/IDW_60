@@ -2,6 +2,16 @@ body {
     background: linear-gradient(to bottom, rgb(238, 221, 184), rgb(236, 153, 90));
 }
 
+body.pagina-turnos {
+    background: linear-gradient(to bottom, rgb(183, 235, 131), rgb(214, 221, 211));
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important; 
+}
+
+.text-muted {
+    color: #333 !important;
+    font-weight:500;
+}  
+
 .text-success {
     color: #444!important;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -20,7 +30,7 @@ body {
 
 .bg-verde {
     background-color: rgb(78, 148, 43)!important;
-    color: white;
+    color: white!important;
 }
 
 .btn-verde {
@@ -130,3 +140,10 @@ Tom Select: borde y sombra verde unificado
     background-color: rgb(226, 243, 208); /* Verde claro */
     transition: background-color 0.3s ease;
 }
+
+.ts-wrapper.single .ts-dropdown {
+    bottom: 100% !important;
+    top: auto !important;
+    margin-bottom: 0.25rem !important;
+    border-radius: 0.5rem 0.5rem 0 0 !important;
+  }
