@@ -1,6 +1,6 @@
 import medicosIniciales from './datos.js'; 
 import { especialidadesDetalle } from './utils.js'; 
-import { obrasSocialesInicialesArray } from './datos-os.js'; 
+import { obrasSocialesIniciales as obrasSocialesInicialesArray } from './datos1.js'; 
 
 // 2. MAPAS DE BÚSQUEDA (Para obtener nombres a partir de IDs)
 const medicosMap = medicosIniciales.reduce((acc, med) => {
