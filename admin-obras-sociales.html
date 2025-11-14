@@ -5,10 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administración de Obras Sociales - VITA KIDS</title>
-    <link rel="icon" href="imagenes/favicon1.ico" type="image/x-icon">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/estilos.css">
-    <link rel="stylesheet" href="css/formularios.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
@@ -39,12 +37,12 @@
             <!-- Menú de navegación -->
             <nav class="collapse navbar-collapse" id="menuNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a href="medicos.html" class="nav-link ">Médicos</a></li>
-                    <li class="nav-item"><a href="admin-turnos.html" class="nav-link">Turnos</a></li>
-                    <li class="nav-item"><a href="reservas.html" class="nav-link">Reservas</a></li>
-                    <li class="nav-item"><a href="admin-especialidades.html" class="nav-link ">Especialidades</a></li>
-                    <li class="nav-item"><a href="admin-obras-sociales.html" class="nav-link active">Obras Sociales</a></li>
+                    <li class="nav-item"><a href="medicos.html" class="nav-link">Médicos</a></li>
                     <li class="nav-item"><a href="admin-usuarios.html" class="nav-link">Usuarios</a></li>
+                    <li class="nav-item"><a href="admin-turnos.html" class="nav-link">Turnos</a></li>
+                    <li class="nav-item"><a href="admin-reservas.html" class="nav-link">Reservas</a></li>
+                     <li class="nav-item"><a href="admin-obras-sociales.html" class="nav-link active">Obras Sociales</a></li>
+                    <li class="nav-item"><a href="admin-especialidades.html" class="nav-link">Especialidades</a></li>
                     <li class="nav-item">
                       <a href="#" class="nav-link" id = logoutBtn>
                         <i class="fas fa-sign-out-alt"></i> Salida
@@ -58,13 +56,13 @@
     <main class="container">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="fw-bold mt-3">Gestión de Obras Sociales</h2>
-            <button class="btn btn-verde" data-bs-toggle="modal" data-bs-target="#obraSocialModal" id="btnAgregarObraSocial">
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#obraSocialModal" id="btnAgregarObraSocial">
                 <i class="fas fa-plus me-2"></i> Agregar Obra Social
             </button>
         </div>
 
-        <div class="card  shadow-sm">
-            <table class="table  table-bordered table-hover table-verde">
+        <div class="table-responsive bg-white p-3 rounded shadow-sm my-5">
+            <table class="table table-striped table-hover align-middle">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -82,7 +80,7 @@
     <div class="modal fade" id="obraSocialModal" tabindex="-1" aria-labelledby="obraSocialModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header bg-verde text-white">
+                <div class="modal-header bg-primary text-white">
                     <h5 class="modal-title" id="obraSocialModalLabel">Nueva Obra Social</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -110,7 +108,7 @@
                         </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-verde" id="btnGuardarObraSocial">Guardar</button>
+                        <button type="submit" class="btn btn-primary" id="btnGuardarObraSocial">Guardar</button>
                     </div>
                 </form>
             </div>
